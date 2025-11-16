@@ -1,1 +1,226 @@
 @import 'tailwindcss';
+
+@theme {
+  --font-inter: 'Inter', system-ui, -apple-system, sans-serif;
+  --font-dm-sans: 'DM Sans';
+  --font-dm-mono: 'DM Mono';
+
+  --font-heading: var(--font-inter);
+  --font-body: var(--font-dm-mono);
+  --font-ui: var(--font-dm-sans);
+  --font-code: var(--font-dm-mono);
+
+  /* light mode */
+  --color-background: #f5f5f5;
+  --color-background-secondary: #e5e5e5;
+  --color-background-tertiary: #d4d4d4;
+
+  --color-surface: #ffffff;
+  --color-surface-hover: #fafafa;
+
+  /* text */
+  --color-foreground: #262626;
+  --color-foreground-secondary: #525252;
+  --color-foreground-tertiary: #737373;
+  --color-foreground-disabled: #a3a3a3;
+
+  --color-border: rgba(163, 163, 163, 0.5);
+  --color-ring: ;
+
+  /* up for change */
+  --color-primary: #3b82f6;
+  --color-primary-hover: #2563eb;
+  --color-primary-foreground: #ffffff;
+
+  --color-pattern: rgba(163, 163, 163, 0.5);
+
+  --spacing-xs: 0.5rem; /* 8px */
+  --spacing-sm: 1rem; /* 16px */
+  --spacing-md: 1.5rem; /* 24px */
+  --spacing-lg: 2rem; /* 32px */
+  --spacing-xl: 3rem; /* 48px */
+  --spacing-2xl: 4rem; /* 64px */
+  --spacing-3xl: 6rem; /* 96px */
+
+  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -4px rgba(0, 0, 0, 0.1);
+  --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
+
+  --transition-fast: 150ms;
+  --transition-normal: 200ms;
+  --transition-slow: 300ms;
+}
+
+/* dark mode */
+/* .dark {
+  @theme {
+    --color-background: #efd321;
+    --color-background-secondary: ;
+    --color-background-tertiary: ;
+
+    --color-surface: ;
+    --color-surface-hover: ;
+
+    --color-foreground: ;
+    --color-foreground-secondary: ;
+    --color-foreground-tertiary: ;
+    --color-foreground-disabled: ;
+
+    --color-border: ;
+    --color-border-secondary: ;
+
+    --shadow-sm: ;
+    --shadow-md: ;
+    --shadow-lg: ;
+    --shadow-xl: ;
+  }
+} */
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  html {
+    @apply antialiased;
+  }
+
+  body {
+    @apply bg-background text-foreground font-body overflow-x-hidden;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @apply font-heading font-bold tracking-tight;
+  }
+
+  :focus-visible {
+    @apply ring-primary ring-offset-background ring-2 ring-offset-2 outline-none;
+  }
+
+  /* selection */
+  ::selection {
+    @apply bg-primary text-primary-foreground;
+  }
+}
+
+@layer utilities {
+  .container {
+    @apply mx-auto max-w-7xl px-4 sm:px-6 lg:px-8;
+  }
+
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  /* --------------------------------------------------------------------------
+    PATTERN BACKGROUNDS
+    -------------------------------------------------------------------------- */
+
+  /* Diagonal Stripes */
+  .pattern-stripes {
+    background-image: repeating-linear-gradient(
+      315deg,
+      var(--color-pattern) 0,
+      var(--color-pattern) 1px,
+      transparent 0,
+      transparent 50%
+    );
+    background-size: 10px 10px;
+    background-attachment: fixed;
+  }
+
+  /* Dots Pattern (like Tailwind CSS website) */
+  .pattern-dots {
+    background-image: radial-gradient(circle, var(--color-pattern) 1px, transparent 1px);
+    background-size: 20px 20px;
+    background-attachment: fixed;
+  }
+
+  /* Dense dots */
+  .pattern-dots-dense {
+    background-image: radial-gradient(circle, var(--color-pattern) 1px, transparent 1px);
+    background-size: 12px 12px;
+    background-attachment: fixed;
+  }
+
+  /* Grid Pattern */
+  .pattern-grid {
+    background-image:
+      linear-gradient(var(--color-pattern) 1px, transparent 1px),
+      linear-gradient(90deg, var(--color-pattern) 1px, transparent 1px);
+    background-size: 20px 20px;
+    background-attachment: fixed;
+  }
+}
+
+@layer components {
+  /* .btn {
+    @apply inline-flex items-center justify-center gap-2 px-4 py-2 rounded-lg font-ui font-medium transition-colors disabled:opacity-50 disabled:pointer-events-none;
+  }
+  
+  .btn-primary {
+    @apply btn bg-primary text-primary-foreground hover:bg-primary-hover;
+  }
+  
+  .btn-secondary {
+    @apply btn bg-background-secondary text-foreground hover:bg-background-tertiary;
+  }
+  
+  .btn-outline {
+    @apply btn border-2 border-border hover:bg-background-secondary;
+  }
+  
+  .btn-ghost {
+    @apply btn hover:bg-background-secondary;
+  }
+  
+  .btn-sm {
+    @apply px-3 py-1.5 text-sm;
+  }
+  
+  .btn-lg {
+    @apply px-6 py-3 text-lg;
+  }
+  
+  .card {
+    @apply bg-surface border border-border rounded-xl p-6 shadow-sm;
+  }
+  
+  .card-hover {
+    @apply card transition-all duration-200 hover:shadow-md hover:-translate-y-1;
+  }
+  
+  .input {
+    @apply w-full px-4 py-2 bg-background border border-border rounded-lg font-ui placeholder:text-foreground-tertiary focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-colors disabled:opacity-50 disabled:cursor-not-allowed;
+  }
+  
+  .label {
+    @apply block text-sm font-ui font-medium mb-2;
+  }
+  
+  .textarea {
+    @apply input resize-none min-h-[100px];
+  }
+  
+  .select {
+    @apply input cursor-pointer;
+  }
+  
+  .checkbox {
+    @apply w-4 h-4 border-2 border-border rounded focus:ring-2 focus:ring-primary focus:ring-offset-2 text-primary;
+  }
+  
+  .radio {
+    @apply checkbox rounded-full;
+  }
+  
+  .link {
+    @apply text-primary hover:text-primary-hover underline-offset-4 hover:underline transition-colors;
+  } */
+}
