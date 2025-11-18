@@ -12,15 +12,15 @@ export default function AppLayout({ children }) {
         '2xl:grid-cols-[1fr_60px_minmax(1280px,2fr)_60px_1fr]'
       )}
     >
-      <div class="hidden 2xl:block"></div>
+      <div className="hidden 2xl:block"></div>
 
-      <div class="pattern-stripes border-border hidden border-x sm:block"></div>
+      <div className="pattern-stripes border-border hidden border-x sm:block"></div>
 
-      <main className="mt-2xl space-y-sm relative">{children}</main>
+      <main className="mt-3xl space-y-3xl relative">{children}</main>
 
-      <div class="pattern-stripes border-border hidden border-x sm:block"></div>
+      <div className="pattern-stripes border-border hidden border-x sm:block"></div>
 
-      <div class="hidden 2xl:block"></div>
+      <div className="hidden 2xl:block"></div>
     </div>
   );
 }

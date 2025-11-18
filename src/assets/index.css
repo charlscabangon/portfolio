@@ -6,7 +6,7 @@
   --font-dm-mono: 'DM Mono';
 
   --font-heading: var(--font-inter);
-  --font-body: var(--font-dm-mono);
+  --font-body: var(--font-dm-sans);
   --font-ui: var(--font-dm-sans);
   --font-code: var(--font-dm-mono);
 
@@ -24,7 +24,7 @@
   --color-foreground-tertiary: #737373;
   --color-foreground-disabled: #a3a3a3;
 
-  --color-border: rgba(163, 163, 163, 0.5);
+  --color-border: rgba(163, 163, 163, 0.3);
   --color-ring: ;
 
   /* up for change */
@@ -32,7 +32,7 @@
   --color-primary-hover: #2563eb;
   --color-primary-foreground: #ffffff;
 
-  --color-pattern: rgba(163, 163, 163, 0.5);
+  --color-pattern: rgba(163, 163, 163, 0.3);
 
   --spacing-xs: 0.5rem; /* 8px */
   --spacing-sm: 1rem; /* 16px */
@@ -67,7 +67,7 @@
     --color-foreground-tertiary: ;
     --color-foreground-disabled: ;
 
-    --color-border: ;
+    --color-border: #00ff00;
     --color-border-secondary: ;
 
     --shadow-sm: ;
@@ -83,7 +83,8 @@
   }
 
   html {
-    @apply antialiased;
+    @apply overflow-x-hidden antialiased;
+    font-size: clamp(1rem, 0.95rem + 0.25vw, 1.125rem); /* 16px -> 18px */
   }
 
   body {
@@ -96,31 +97,105 @@
   h4,
   h5,
   h6 {
-    @apply font-heading font-bold tracking-tight;
+    @apply font-heading font-bold;
+    line-height: 0.8;
+    text-wrap: balance;
   }
 
+  h1 {
+    font-size: clamp(4rem, 3rem + 4vw, 6rem); /* 64px -> 96px */
+    letter-spacing: -0.025em;
+  }
+
+  h2 {
+    font-size: clamp(2.5rem, 2rem + 3vw, 4rem); /* 40px -> 64px */
+    letter-spacing: -0.02em;
+  }
+
+  h3 {
+    font-size: clamp(2rem, 1.75rem + 2vw, 3rem); /* 32px -> 48px */
+    letter-spacing: -0.015em;
+  }
+
+  h4 {
+    font-size: clamp(1.75rem, 1.5rem + 1.5vw, 2.5rem); /* 28px -> 40px */
+    letter-spacing: -0.01em;
+  }
+
+  h5 {
+    font-size: clamp(1.5rem, 1.25rem + 1vw, 2rem); /* 24px -> 32px */
+    letter-spacing: -0.01em;
+  }
+
+  h6 {
+    font-size: clamp(1.25rem, 1.1rem + 0.5vw, 1.75rem); /* 20px -> 28px */
+    letter-spacing: 0;
+  }
+
+  p {
+    @apply font-body;
+    font-size: clamp(0.875rem, 0.825rem + 0.25vw, 0.9375rem); /* 14px -> 15px */
+    line-height: 1.7;
+    letter-spacing: 0.01em;
+    max-width: 65ch;
+    text-wrap: pretty;
+  }
+
+  .display-text {
+    font-size: clamp(5rem, 6vw + 3rem, 8rem); /* 80px -> 128px */
+    line-height: 0.8;
+    letter-spacing: -0.04em;
+    font-weight: 600;
+    margin-left: var(--spacing-sm);
+  }
+
+  code {
+    @apply font-code bg-background-secondary text-foreground rounded px-1.5 py-0.5;
+    font-size: 0.875em;
+    letter-spacing: 0;
+  }
+
+  a {
+    @apply text-primary;
+    text-decoration: underline;
+    text-underline-offset: 0.2em;
+    transition: color var(--transition-fast);
+  }
+
+  a:hover {
+    @apply text-primary-hover;
+  }
+
+  /* Strong & Em */
+  strong,
+  b {
+    font-weight: 600;
+  }
+
+  em,
+  i {
+    font-style: italic;
+  }
+
+  /* HR */
+  hr {
+    @apply border-border;
+    margin: 2rem 0;
+  }
+
+  /* Focus styles */
   :focus-visible {
     @apply ring-primary ring-offset-background ring-2 ring-offset-2 outline-none;
   }
 
-  /* selection */
+  /* Selection */
   ::selection {
     @apply bg-primary text-primary-foreground;
   }
 }
 
 @layer utilities {
-  .container {
-    @apply mx-auto max-w-7xl px-4 sm:px-6 lg:px-8;
-  }
-
-  .text-balance {
-    text-wrap: balance;
-  }
-
-  /* --------------------------------------------------------------------------
-    PATTERN BACKGROUNDS
-    -------------------------------------------------------------------------- */
+  /* pattern backgrounds */
 
   /* Diagonal Stripes */
   .pattern-stripes {
@@ -132,21 +207,18 @@
       transparent 50%
     );
     background-size: 10px 10px;
-    background-attachment: fixed;
   }
 
   /* Dots Pattern (like Tailwind CSS website) */
   .pattern-dots {
     background-image: radial-gradient(circle, var(--color-pattern) 1px, transparent 1px);
     background-size: 20px 20px;
-    background-attachment: fixed;
   }
 
   /* Dense dots */
   .pattern-dots-dense {
     background-image: radial-gradient(circle, var(--color-pattern) 1px, transparent 1px);
     background-size: 12px 12px;
-    background-attachment: fixed;
   }
 
   /* Grid Pattern */
@@ -155,72 +227,38 @@
       linear-gradient(var(--color-pattern) 1px, transparent 1px),
       linear-gradient(90deg, var(--color-pattern) 1px, transparent 1px);
     background-size: 20px 20px;
-    background-attachment: fixed;
   }
 }
 
 @layer components {
-  /* .btn {
-    @apply inline-flex items-center justify-center gap-2 px-4 py-2 rounded-lg font-ui font-medium transition-colors disabled:opacity-50 disabled:pointer-events-none;
+  .btn {
+    @apply font-ui inline-flex cursor-pointer items-center justify-center gap-2 rounded-full px-4 py-2 text-xs font-medium duration-300 ease-out disabled:pointer-events-none disabled:opacity-50 sm:px-8 sm:text-sm;
   }
-  
-  .btn-primary {
-    @apply btn bg-primary text-primary-foreground hover:bg-primary-hover;
+
+  .nav-desktop {
+    @apply font-ui hover:bg-background-secondary dark:hover:bg-background-secondary cursor-pointer px-3 text-xs font-medium transition-colors duration-200 sm:px-4 md:px-5 md:text-sm lg:px-6;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    min-width: 2.5rem; /* Ensures clickable area on mobile */
   }
-  
-  .btn-secondary {
-    @apply btn bg-background-secondary text-foreground hover:bg-background-tertiary;
+
+  .nav-mobile {
+    @apply font-ui hover:bg-background-secondary dark:hover:bg-background-secondary block px-6 py-3 text-xs font-medium transition-colors;
   }
-  
-  .btn-outline {
-    @apply btn border-2 border-border hover:bg-background-secondary;
+
+  .container {
+    @apply px-2xl py-xl space-y-sm;
   }
+
+  /*
   
   .btn-ghost {
     @apply btn hover:bg-background-secondary;
   }
   
-  .btn-sm {
-    @apply px-3 py-1.5 text-sm;
-  }
-  
-  .btn-lg {
-    @apply px-6 py-3 text-lg;
-  }
-  
   .card {
     @apply bg-surface border border-border rounded-xl p-6 shadow-sm;
-  }
-  
-  .card-hover {
-    @apply card transition-all duration-200 hover:shadow-md hover:-translate-y-1;
-  }
-  
-  .input {
-    @apply w-full px-4 py-2 bg-background border border-border rounded-lg font-ui placeholder:text-foreground-tertiary focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-colors disabled:opacity-50 disabled:cursor-not-allowed;
-  }
-  
-  .label {
-    @apply block text-sm font-ui font-medium mb-2;
-  }
-  
-  .textarea {
-    @apply input resize-none min-h-[100px];
-  }
-  
-  .select {
-    @apply input cursor-pointer;
-  }
-  
-  .checkbox {
-    @apply w-4 h-4 border-2 border-border rounded focus:ring-2 focus:ring-primary focus:ring-offset-2 text-primary;
-  }
-  
-  .radio {
-    @apply checkbox rounded-full;
-  }
-  
-  .link {
-    @apply text-primary hover:text-primary-hover underline-offset-4 hover:underline transition-colors;
   } */
 }
