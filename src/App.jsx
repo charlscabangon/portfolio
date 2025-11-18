@@ -1,7 +1,17 @@
+import AppLayout from './layout/AppLayout';
+
+import Header from './components/Header';
+import Hero from './features/hero/Hero';
+import AboutMe from './layout/home/AboutMe';
+
 export default function App() {
   return (
-    <div className="flex min-h-screen items-center justify-center bg-blue-500">
-      <h1 className="text-6xl text-white">Hello, world!</h1>
-    </div>
+    <>
+      <Header />
+      <AppLayout>
+        <Hero />
+        <AboutMe />
+      </AppLayout>
+    </>
   );
 }
