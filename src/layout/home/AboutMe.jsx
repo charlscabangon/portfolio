@@ -1,34 +1,91 @@
-import Border from '@/components/Border';
+import clsx from 'clsx';
+import Border from '@/components/ui/Border';
 
 import image from '@/assets/images/portfolio-pic.avif';
 
 export default function AboutMe() {
-  //todo: not hard code the infos, ui refinement
+  const stack = ['JS', 'React', 'TW', 'Vite', 'Git', 'JS', 'React'];
+  const design = ['Ps', 'Ai', 'Ae', 'Xd', 'Figma', 'Canva'];
+
+  //todo: not hard code the infos, ui refinement, BORDERS, h w
   return (
-    <Border>
-      <section className="flex w-full flex-col md:flex-row md:justify-between">
-        <div className="pattern-stripes flex w-full items-center justify-center md:w-[30%]">
-          <div className="border-background-secondary/80 ring-border dark:ring-border h-[95%] w-[80%] overflow-hidden rounded-md border-10 shadow-md ring">
-            <img src={image} alt="" className="h-auto w-full object-cover" />
+    <section>
+      <Border>
+        <div className="flex w-full flex-col md:flex-row">
+          {/* image container */}
+          <div
+            className={clsx(
+              'pattern-stripes',
+              'flex w-full items-center justify-center',
+              'p-md sm:p-md md:w-[30%]'
+            )}
+          >
+            <div
+              className={clsx(
+                'border-background-tertiary/70 ring-border dark:ring-border',
+                'aspect-[3/5] overflow-hidden rounded-md border-10 shadow-lg ring',
+                'md:-ml-20'
+              )}
+            >
+              <img src={image} alt="" className="h-auto w-full object-cover" />
+            </div>
+          </div>
+
+          {/* text content */}
+          <div
+            className={clsx(
+              'bg-background-secondary dark:bg-background-secondary border-border dark:border-border border',
+              'p-sm flex items-center justify-center',
+              'md:order-first md:w-[70%]'
+            )}
+          >
+            <article
+              className={clsx(
+                'border-border bg-background dark:bg-background container',
+                'md:pr-2xl container h-full w-full rounded-md border shadow-md'
+              )}
+            >
+              <h6>what i do</h6>
+              <p>
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Hic qui aliquam cum
+                repellendus dolorem quam impedit neque, veniam, aperiam laudantium minus aut, ipsa
+                quod voluptatum. Velit repellat perspiciatis quasi sit!
+              </p>
+              <div
+                className={clsx(
+                  'border-border pattern-dots-dense container',
+                  'm-auto flex h-fit w-[85%] flex-col rounded-sm border shadow-sm md:m-0'
+                )}
+              >
+                <div className="font-code text-foreground-secondary dark:text-foreground-secondary border-foreground-secondary border-l-2 pl-3 text-xs">
+                  tech stack
+                </div>
+                <div className="gap-sm flex flex-wrap">
+                  {stack.map((s, index) => {
+                    return (
+                      <div key={index} className="bg-foreground rounded-sm p-2 text-xs text-white">
+                        {s}
+                      </div>
+                    );
+                  })}
+                </div>
+                <div className="font-code text-foreground-secondary dark:text-foreground-secondary border-foreground-secondary border-l-2 pl-3 text-xs">
+                  design tools
+                </div>
+                <div className="gap-sm flex flex-wrap">
+                  {design.map((s, index) => {
+                    return (
+                      <div key={index} className="bg-foreground rounded-sm p-2 text-xs text-white">
+                        {s}
+                      </div>
+                    );
+                  })}
+                </div>
+              </div>
+            </article>
           </div>
         </div>
-
-        <div className="bg-background-secondary dark:bg-background-secondary border-border dark:border-border flex items-center justify-center border md:order-first md:w-[70%]">
-          <article className="border-border bg-background dark:bg-background container h-[96%] w-[97%] rounded-md border shadow-md">
-            <h5>what i do</h5>
-            <p>
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Hic qui aliquam cum
-              repellendus dolorem quam impedit neque, veniam, aperiam laudantium minus aut, ipsa
-              quod voluptatum. Velit repellat perspiciatis quasi sit!
-            </p>
-            <div className="border-border pattern-dots-dense container h-[40%] w-[80%] rounded-sm border shadow-sm">
-              <div className="font-code text-foreground-tertiary dark:text-foreground-tertiary border-foreground-tertiary border-l-2 pl-3 text-xs md:text-sm">
-                tech stack
-              </div>
-            </div>
-          </article>
-        </div>
-      </section>
-    </Border>
+      </Border>
+    </section>
   );
 }
