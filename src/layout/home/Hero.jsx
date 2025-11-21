@@ -1,14 +1,23 @@
-import Border from '@/components/Border';
-import Label from '@/components/Label';
+import Border from '@/components/ui/Border';
+import Label from '@/components/ui/Label';
 import Heading from '@/components/Heading';
 import { PrimaryBtn, SecondaryBtn } from '@/components/ui/Buttons';
 
+// todo: refine actions in mobile
 export default function Hero() {
   return (
     <section className="mx-sm space-y-sm h-screen">
       <Heading label="maybe a friendly greeting here?">hello,</Heading>
       <Heading>i am Charls!</Heading>
-      <Border>
+      <div className="space-y-1 md:hidden">
+        <Border className="">
+          <PrimaryBtn>connect with me</PrimaryBtn>
+        </Border>
+        <Border>
+          <SecondaryBtn>see my works</SecondaryBtn>
+        </Border>
+      </div>
+      <Border className="hidden space-x-3 md:flex">
         <PrimaryBtn>connect with me</PrimaryBtn>
         <SecondaryBtn>see my works</SecondaryBtn>
       </Border>

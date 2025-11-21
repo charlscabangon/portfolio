@@ -12,8 +12,8 @@
 
   /* light mode */
   --color-background: #f5f5f5;
-  --color-background-secondary: #e5e5e5;
-  --color-background-tertiary: #d4d4d4;
+  --color-background-secondary: #eaeaea;
+  --color-background-tertiary: #e1e1e1;
 
   --color-surface: #ffffff;
   --color-surface-hover: #fafafa;
@@ -41,6 +41,7 @@
   --spacing-xl: 3rem; /* 48px */
   --spacing-2xl: 4rem; /* 64px */
   --spacing-3xl: 6rem; /* 96px */
+  --spacing-4xl: 12rem; /* 192px */
 
   --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
   --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1);
@@ -128,25 +129,17 @@
   }
 
   h6 {
-    font-size: clamp(1.25rem, 1.1rem + 0.5vw, 1.75rem); /* 20px -> 28px */
+    font-size: clamp(1rem, 0.9rem + 1vw, 1.4375rem); /* 16px → 23px */
     letter-spacing: 0;
   }
 
   p {
     @apply font-body;
-    font-size: clamp(0.875rem, 0.825rem + 0.25vw, 0.9375rem); /* 14px -> 15px */
+    font-size: clamp(0.625rem, 0.55rem + 1vw, 0.875rem); /* 14px -> 15px */
     line-height: 1.7;
     letter-spacing: 0.01em;
     max-width: 65ch;
     text-wrap: pretty;
-  }
-
-  .display-text {
-    font-size: clamp(5rem, 6vw + 3rem, 8rem); /* 80px -> 128px */
-    line-height: 0.8;
-    letter-spacing: -0.04em;
-    font-weight: 600;
-    margin-left: var(--spacing-sm);
   }
 
   code {
@@ -236,7 +229,7 @@
   }
 
   .nav-desktop {
-    @apply font-ui hover:bg-background-secondary dark:hover:bg-background-secondary cursor-pointer px-3 text-xs font-medium transition-colors duration-200 sm:px-4 md:px-5 md:text-sm lg:px-6;
+    @apply font-ui hover:bg-background-secondary dark:hover:bg-background-secondary cursor-pointer px-5 text-sm font-medium transition-colors duration-200 lg:px-6;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -249,7 +242,7 @@
   }
 
   .container {
-    @apply px-2xl py-xl space-y-sm;
+    @apply p-md md:p-lg lg:p-xl space-y-sm;
   }
 
   /*

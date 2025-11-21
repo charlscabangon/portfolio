@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 
-import Border from './Border';
-import Label from './Label';
+import Border from './ui/Border';
+import Label from './ui/Label';
 
 export default function Heading({ children, level = 'h1', position, label }) {
   const Tag = level;
