@@ -1,11 +1,13 @@
-import { useState } from 'react';
+import { useState, memo } from 'react';
 import PropTypes from 'prop-types';
+
+import TimelineNode from './TimelineNode';
+import Markdown from '@/features/markdown/Markdown';
 
 import clsx from 'clsx';
 import { ChevronDownIcon } from '@heroicons/react/20/solid';
-import TimelineNode from './TimelineNode';
 
-export default function AccordionItem({ item, isFirst, isLast }) {
+function AccordionItem({ item, isFirst, isLast }) {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
@@ -47,15 +49,14 @@ export default function AccordionItem({ item, isFirst, isLast }) {
           />
         </button>
 
-        {/* expandable content */}
         <div
           className={clsx(
             'overflow-hidden transition-all duration-300 ease-out',
             isOpen ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'
           )}
         >
-          <div className="px-md pt-sm pb-md text-foreground-secondary dark:text-foreground-secondary text-sm">
-            {item.content}
+          <div className="px-md pt-sm pb-md text-foreground dark:text-foreground text-sm">
+            <Markdown dir={item.dir} file={item.filename} />
           </div>
         </div>
       </div>
@@ -75,3 +76,5 @@ AccordionItem.propTypes = {
   isFirst: PropTypes.bool.isRequired,
   isLast: PropTypes.bool.isRequired,
 };
+
+export default memo(AccordionItem);

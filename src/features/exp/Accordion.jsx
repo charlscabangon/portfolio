@@ -4,12 +4,13 @@ export default function Accordion() {
   // MOCK
   const items = [
     {
-      id: '∞',
+      id: 0,
       title: 'Frontend Engineer',
       company: 'Apple',
       date: '2028 -  ∞',
       isActive: true,
-      content: 'manifest MANIFEST',
+      dir: 'exp',
+      filename: 'frontend.md',
     },
     {
       id: 1,
@@ -17,8 +18,8 @@ export default function Accordion() {
       company: 'Freelance',
       date: '2024 - ∞',
       isActive: true,
-      content:
-        'Creating visual designs for various clients including logos, branding materials, social media graphics, and marketing collateral. Specializing in modern, clean aesthetics with a focus on typography and color theory.',
+      dir: 'exp',
+      filename: 'graphics.md',
     },
     {
       id: 2,
@@ -26,8 +27,8 @@ export default function Accordion() {
       company: 'Aklan Provincial ICT Office',
       date: 'January 2025 - March 2025',
       isActive: false,
-      content:
-        'Assisted in developing and maintaining government web applications. Collaborated with senior developers on database management and frontend implementations. Gained hands-on experience with React, Tailwind CSS, and PostgreSQL.',
+      dir: 'exp',
+      filename: 'intern.md',
     },
     {
       id: 3,
@@ -35,13 +36,13 @@ export default function Accordion() {
       company: 'Garcia College of Technology',
       date: 'August 2021 - May 2025',
       isActive: false,
-      content:
-        'Comprehensive study of computer science fundamentals including data structures, algorithms, software engineering, and web development. Participated in various hackathons and coding competitions. Graduated with honors.',
+      dir: 'exp',
+      filename: 'grad.md',
     },
   ];
 
   return (
-    <div>
+    <div className="w-full">
       {items.map((item, index) => (
         <AccordionItem
           key={item.id}
