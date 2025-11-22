@@ -1,16 +1,15 @@
 import AppLayout from './layout/AppLayout';
 
 import Header from './components/Header';
-import Hero from './features/hero/Hero';
-import AboutMe from './layout/home/AboutMe';
+import Footer from './components/Footer';
+import HomePage from './pages/HomePage';
 
 export default function App() {
   return (
     <>
       <Header />
       <AppLayout>
-        <Hero />
-        <AboutMe />
+        <HomePage />
       </AppLayout>
     </>
   );
