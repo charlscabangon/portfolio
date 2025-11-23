@@ -20,8 +20,9 @@ export default function Header() {
     <>
       <header
         className={clsx(
-          'fixed top-0 left-0 z-50 h-[5vh] w-full',
-          'flex items-center justify-end',
+          'fixed top-0 left-0 z-50',
+          'h-10 md:h-12 lg:h-14',
+          'flex w-full items-center justify-end',
           'bg-background dark:bg-background border-border border-b',
           'px-2 md:px-8 lg:px-10'
         )}

@@ -1,13 +1,13 @@
-import { useState, memo } from 'react';
+import { useState } from 'react';
 import PropTypes from 'prop-types';
 
-import TimelineNode from './TimelineNode';
+import TimelineNode from '../../display/TimelineNode/TimelineNode';
 import Markdown from '@/features/markdown/Markdown';
 
 import clsx from 'clsx';
 import { ChevronDownIcon } from '@heroicons/react/20/solid';
 
-function AccordionItem({ item, isFirst, isLast }) {
+export default function AccordionItem({ item, isFirst, isLast }) {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
@@ -76,5 +76,3 @@ AccordionItem.propTypes = {
   isFirst: PropTypes.bool.isRequired,
   isLast: PropTypes.bool.isRequired,
 };
-
-export default memo(AccordionItem);

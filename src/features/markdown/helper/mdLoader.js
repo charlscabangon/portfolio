@@ -1,7 +1,7 @@
 import { MD_DIRS } from './mdDirs';
 
 // pre-load all md files at BUILD TIME
-const allMarkdownFiles = import.meta.glob('/src/content/**/*.md', {
+const allMarkdownFiles = import.meta.glob('/src/data/content/**/*.md', {
   query: '?raw',
   import: 'default',
   eager: true,

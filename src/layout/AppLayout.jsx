@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import Footer from '@/components/Footer';
+import Footer from '@/layout/Footer';
 
 export default function AppLayout({ children }) {
   return (

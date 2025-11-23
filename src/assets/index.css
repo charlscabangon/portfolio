@@ -42,7 +42,8 @@
   --spacing-xl: 3rem; /* 48px */
   --spacing-2xl: 4rem; /* 64px */
   --spacing-3xl: 6rem; /* 96px */
-  --spacing-4xl: 12rem; /* 192px */
+  --spacing-4xl: 8rem; /* 128px */
+  --spacing-5xl: 12rem; /* 192px */
 
   --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
   --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1);
@@ -100,38 +101,44 @@
   h5,
   h6 {
     @apply font-heading font-bold;
-    line-height: 0.8;
+    line-height: 1;
     text-wrap: balance;
+  }
+
+  .display-text {
+    font-size: clamp(4.5rem, 4rem + 6vw, 8rem);
+    letter-spacing: -0.05em;
+    line-height: 0.85;
   }
 
   h1 {
     font-size: clamp(4rem, 3rem + 4vw, 6rem); /* 64px -> 96px */
-    letter-spacing: -0.025em;
+    letter-spacing: -0.05em;
   }
 
   h2 {
     font-size: clamp(2.5rem, 2rem + 3vw, 4rem); /* 40px -> 64px */
-    letter-spacing: -0.02em;
+    letter-spacing: -0.04em;
   }
 
   h3 {
     font-size: clamp(2rem, 1.75rem + 2vw, 3rem); /* 32px -> 48px */
-    letter-spacing: -0.015em;
+    letter-spacing: -0.04em;
   }
 
   h4 {
-    font-size: clamp(1.75rem, 1.5rem + 1.5vw, 2.5rem); /* 28px -> 40px */
-    letter-spacing: -0.01em;
+    font-size: clamp(1.6875rem, 1.5rem + 1vw, 2.375rem); /* 27px -> 38px */
+    letter-spacing: -0.04em;
   }
 
   h5 {
     font-size: clamp(1.5rem, 1.25rem + 1vw, 2rem); /* 24px -> 32px */
-    letter-spacing: -0.01em;
+    letter-spacing: -0.04em;
   }
 
   h6 {
     font-size: clamp(1rem, 0.9rem + 1vw, 1.4375rem); /* 16px → 23px */
-    letter-spacing: 0;
+    letter-spacing: -0.04em;
   }
 
   p {
@@ -226,7 +233,7 @@
 
 @layer components {
   .btn {
-    @apply font-ui inline-flex cursor-pointer items-center justify-center gap-2 rounded-full px-4 py-2 text-xs font-medium duration-300 ease-out disabled:pointer-events-none disabled:opacity-50 sm:px-8 sm:text-sm;
+    @apply font-ui inline-flex cursor-pointer items-center justify-center gap-2 rounded-full px-4 py-2.5 text-xs font-medium duration-100 ease-out disabled:pointer-events-none disabled:opacity-50 sm:px-8 sm:text-sm;
   }
 
   .nav-desktop {

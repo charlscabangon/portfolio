@@ -34,7 +34,7 @@ export default function AboutMe() {
           {/* text content */}
           <div
             className={clsx(
-              'bg-background-secondary dark:bg-background-secondary border-border dark:border-border border',
+              'bg-background-secondary dark:bg-background-secondary border-border dark:border-border border-y md:border-r',
               'p-sm flex items-center justify-center',
               'md:order-first md:w-[70%]'
             )}
@@ -54,7 +54,8 @@ export default function AboutMe() {
               <div
                 className={clsx(
                   'border-border pattern-dots-dense container',
-                  'm-auto flex h-fit w-[85%] flex-col rounded-sm border shadow-sm md:m-0'
+                  'm-auto flex h-fit flex-col rounded-sm border shadow-sm',
+                  'xl:mt-lg md:m-0 lg:w-[90%] 2xl:w-[85%]'
                 )}
               >
                 <div className="font-code text-foreground-secondary dark:text-foreground-secondary border-foreground-secondary border-l-2 pl-3 text-xs">

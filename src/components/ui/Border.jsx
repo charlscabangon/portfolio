@@ -15,18 +15,20 @@ export default function Border({ children, border = 'both', position = 'left', c
   };
 
   return (
-    <div
-      className={clsx(
-        borders[border],
-        'relative flex',
-        positions[position],
-        'before:bg-border dark:before:bg-border before:absolute before:top-0 before:-left-[100vw] before:-z-10 before:h-px before:w-[200vw]',
-        'after:bg-border dark:after:bg-border after:absolute after:bottom-0 after:-left-[100vw] after:-z-10 after:h-px after:w-[200vw]',
-        className
-      )}
-    >
-      {children}
-    </div>
+    <>
+      <div
+        className={clsx(
+          borders[border],
+          'relative flex',
+          positions[position],
+          'before:bg-border dark:before:bg-border before:absolute before:top-0 before:-left-[100vw] before:-z-10 before:h-px before:w-[200vw]',
+          'after:bg-border dark:after:bg-border after:absolute after:bottom-0 after:-left-[100vw] after:-z-10 after:h-px after:w-[200vw]',
+          className
+        )}
+      >
+        {children}
+      </div>
+    </>
   );
 }
 

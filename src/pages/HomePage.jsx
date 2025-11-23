@@ -1,12 +1,12 @@
-import Hero from '@/layout/home/Hero';
-import AboutMe from '@/layout/home/AboutMe';
-import Projects from '@/layout/home/Projects';
-import Designs from '@/layout/home/Designs';
-import Experiences from '@/layout/home/Experiences';
+import Hero from '@/components/sections/Hero';
+import AboutMe from '@/components/sections/AboutMe';
+import Projects from '@/components/sections/Projects';
+import Designs from '@/components/sections/Designs';
+import Experiences from '@/components/sections/Experiences';
 
 export default function HomePage() {
   return (
-    <div className="space-y-3xl my-4xl">
+    <div className="space-y-3xl mt-4xl mb-5xl">
       <Hero />
       <AboutMe />
       <Experiences />
