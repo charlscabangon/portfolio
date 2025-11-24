@@ -25,15 +25,15 @@ export default function Hero() {
       </div>
 
       <div className="space-y-2 md:hidden">
-        <Border className="flex-col">
+        <Border isFront={true} className="flex-col">
           <PrimaryBtn>connect with me</PrimaryBtn>
         </Border>
-        <Border className="flex-col">
+        <Border isFront={true} className="flex-col">
           <SecondaryBtn>see my works</SecondaryBtn>
         </Border>
       </div>
 
-      <Border className="hidden space-x-3 md:flex">
+      <Border isFront={true} className="hidden space-x-3 md:flex">
         <PrimaryBtn>connect with me</PrimaryBtn>
         <SecondaryBtn>see my works</SecondaryBtn>
       </Border>

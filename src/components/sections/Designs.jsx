@@ -1,9 +1,10 @@
 import clsx from 'clsx';
 import Border from '@/components/ui/Border';
-import Heading from '@/components/ui/Heading';
+import Heading from '@/components/display/Heading/Heading';
 
-import { useDevice } from "@/utils/hooks/useDevice";
-import Label from "../ui/Label";
+import { useDevice } from '@/utils/hooks/useDevice';
+import Label from '../ui/Label';
+import FontCycler from '../display/FontCycler/FontCycler';
 
 export default function Designs() {
   const { isMobile, isTablet, isDesktop } = useDevice();
@@ -16,9 +17,9 @@ export default function Designs() {
         <Heading level="h4">designs</Heading>
       </div>
       <div>
-        <Label margin={true}>{label}</Label>
-        <Border>
-          <div className={clsx('p-sm w-full')}>
+        <Label margin={true}>{`grid ${label}`}</Label>
+        <Border isFront={true}>
+          <div className="p-sm bg-background-secondary w-full">
             <div
               className={clsx(
                 'grid w-full gap-1',
@@ -168,13 +169,15 @@ export default function Designs() {
               <div
                 className={clsx(
                   'relative overflow-hidden',
-                  'rounded-md border shadow-md',
-                  'border-border dark:border-border bg-background-secondary dark:bg-background-secondary',
+                  'pattern-dots-dense rounded-md border shadow-md',
+                  'bg-background border-border dark:border-border',
                   'col-span-3 col-start-1 row-span-2 row-start-7',
                   'md:col-span-2 md:col-start-2 md:row-span-2 md:row-start-3'
                 )}
               >
-                <div className="flex h-full items-center justify-center"></div>
+                <div className="flex h-full w-full items-center justify-center">
+                  <FontCycler text="Graphic design" />
+                </div>
               </div>
             </div>
           </div>

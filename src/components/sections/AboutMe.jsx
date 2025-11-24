@@ -10,7 +10,7 @@ export default function AboutMe() {
   //todo: not hard code the infos, ui refinement, BORDERS, h w
   return (
     <section>
-      <Border>
+      <Border isFront={true}>
         <div className="flex w-full flex-col md:flex-row">
           {/* image container */}
           <div
@@ -22,7 +22,7 @@ export default function AboutMe() {
           >
             <div
               className={clsx(
-                'border-background-tertiary/70 ring-border dark:ring-border',
+                'border-background-tertiary/70 ring-ring dark:ring-ring',
                 'aspect-[3/5] overflow-hidden rounded-md border-10 shadow-lg ring',
                 'md:-ml-20'
               )}
@@ -34,7 +34,7 @@ export default function AboutMe() {
           {/* text content */}
           <div
             className={clsx(
-              'bg-background-secondary dark:bg-background-secondary border-border dark:border-border border-y md:border-r',
+              'bg-background-secondary dark:bg-background-secondary border-border dark:border-border border-t md:border-t-0 md:border-r',
               'p-sm flex items-center justify-center',
               'md:order-first md:w-[70%]'
             )}
@@ -53,7 +53,7 @@ export default function AboutMe() {
               </p>
               <div
                 className={clsx(
-                  'border-border pattern-dots-dense container',
+                  'border-border dark:border-border dark:ring-ring pattern-dots-dense container',
                   'm-auto flex h-fit flex-col rounded-sm border shadow-sm',
                   'xl:mt-lg md:m-0 lg:w-[90%] 2xl:w-[85%]'
                 )}

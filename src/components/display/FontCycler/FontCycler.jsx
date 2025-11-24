@@ -32,14 +32,9 @@ export default function FontCycler({
   const currentFont = fonts[currentIndex];
 
   return (
-    <div
-      className={clsx(
-        'relative w-full', // Added w-full to ensure width
-        className
-      )}
-    >
-      {/* Main text container - explicit height */}
-      <div className="relative h-16 w-full overflow-hidden sm:h-20 md:h-24 lg:h-20">
+    <div className={clsx('w-fit', className)}>
+      {/* Animated text */}
+      <div className="relative h-16 overflow-hidden sm:h-20 md:h-24 lg:h-20">
         <AnimatePresence mode="popLayout" initial={false}>
           <motion.div
             key={currentIndex}
@@ -52,17 +47,14 @@ export default function FontCycler({
               damping: 30,
               mass: 1,
             }}
-            style={{
-              fontFamily: currentFont.family,
-            }}
-            className="absolute inset-0 flex w-full items-center text-3xl font-bold md:text-4xl lg:text-5xl"
+            style={{ fontFamily: currentFont.family }}
+            className="text-3xl font-bold whitespace-nowrap"
           >
             {text}
           </motion.div>
         </AnimatePresence>
       </div>
 
-      {/* Font name - only rendered if showFontName is true */}
       {showFontName && (
         <div className="mt-2 h-6 overflow-hidden">
           <AnimatePresence mode="popLayout" initial={false}>

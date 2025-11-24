@@ -18,7 +18,7 @@ export default function Label({ children, position = 'left', margin = false }) {
         'flex items-start',
         positions[position],
         margin && 'mx-sm',
-        'font-code text-foreground-disabled label-text text-[0.60rem] font-light lg:text-xs select-none'
+        'font-code text-foreground-disabled label-text text-[0.60rem] font-normal tracking-wide select-none lg:text-xs'
       )}
     >
       <span>{children}</span>

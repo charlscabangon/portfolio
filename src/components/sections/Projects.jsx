@@ -1,4 +1,4 @@
-import Heading from '@/components/ui/Heading';
+import Heading from '@/components/display/Heading/Heading';
 import Label from '@/components/ui/Label';
 import Card from '@/components/ui/Card';
 
@@ -16,7 +16,7 @@ export default function Projects() {
         <Heading level="h4">works</Heading>
       </div>
       <div className="w-full">
-        <Label margin={true}>{`grid ${label}`}</Label>
+        <Label margin={true}>{`grid ${label} auto-rows-auto`}</Label>
         <div className="mx-auto w-full max-w-7xl">
           <div className="gap-sm grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3">
             {projects.map((project, index) => (

@@ -9,8 +9,8 @@ export function PrimaryBtn({ children, type = 'button', onClick }) {
       aria-label=""
       className={clsx(
         'btn',
-        'bg-foreground dark:bg-foreground text-background dark:text-background',
-        'transition-opacity hover:opacity-80 active:opacity-60'
+        'bg-surface dark:bg-surface text-surface-foreground dark:text-surface-foreground',
+        'transition-opacity hover:opacity-80 active:opacity-60 active:dark:opacity-90'
       )}
     >
       {children}
@@ -26,8 +26,8 @@ export function SecondaryBtn({ children, type = 'button', onClick }) {
       aria-label=""
       className={clsx(
         'btn py-1.5',
-        'ring-foreground dark:ring-foreground text-foreground dark:text-foreground ring ring-inset md:ring-2',
-        'transition-opacity hover:opacity-60 active:opacity-30'
+        'ring-surface-hover dark:ring-surface-hover text-foreground dark:text-foreground ring ring-inset md:ring-2',
+        'transition-opacity hover:opacity-60 active:opacity-30 active:dark:opacity-90'
       )}
     >
       {children}
