@@ -12,28 +12,26 @@
   --font-code: var(--font-dm-mono);
 
   /* light mode */
-  --color-background: #f5f5f5;
-  --color-background-secondary: #eaeaea;
-  --color-background-tertiary: #e1e1e1;
+  --color-background: #fafaf9;
+  --color-background-secondary: #f0f0ef;
+  --color-background-tertiary: #ececea;
 
-  --color-surface: #ffffff;
-  --color-surface-hover: #fafafa;
-
-  /* text */
   --color-foreground: #262626;
   --color-foreground-secondary: #525252;
   --color-foreground-tertiary: #737373;
   --color-foreground-disabled: #a3a3a3;
 
-  --color-border: rgba(163, 163, 163, 0.3);
-  --color-ring: ;
+  --color-surface: #262626;
+  --color-surface-hover: #262626;
+  --color-surface-foreground: #f5f5f5;
 
-  /* up for change */
-  --color-primary: #3b82f6;
-  --color-primary-hover: #2563eb;
+  --color-primary: #7bc91f;
+  --color-primary-hover: #6bb018;
   --color-primary-foreground: #ffffff;
 
-  --color-pattern: rgba(163, 163, 163, 0.3);
+  --color-border: rgba(163, 163, 163, 0.2);
+  --color-ring: rgba(163, 163, 163, 0.3);
+  --color-pattern: rgba(163, 163, 163, 0.2);
 
   --spacing-xs: 0.5rem; /* 8px */
   --spacing-sm: 1rem; /* 16px */
@@ -56,29 +54,41 @@
 }
 
 /* dark mode */
-/* .dark {
-  @theme {
-    --color-background: #efd321;
-    --color-background-secondary: ;
-    --color-background-tertiary: ;
+.dark {
+  color-scheme: dark;
 
-    --color-surface: ;
-    --color-surface-hover: ;
+  --color-background: #1a1b1e;
+  --color-background-secondary: #25262d;
+  --color-background-tertiary: #2a2d35;
 
-    --color-foreground: ;
-    --color-foreground-secondary: ;
-    --color-foreground-tertiary: ;
-    --color-foreground-disabled: ;
+  --color-foreground: #e8e8e6; /* 14.2:1 - Softer than pure white */
+  --color-foreground-secondary: #c5c5c3; /* 9.8:1 - Warm gray */
+  --color-foreground-tertiary: #9d9d9a; /* 6.5:1 - Muted but readable */
+  --color-foreground-disabled: #6f6f6d; /* 4.2:1 - Subtle */
 
-    --color-border: #00ff00;
-    --color-border-secondary: ;
+  --color-surface: #2c2f38;
+  --color-surface-hover: #353842;
+  --color-surface-foreground: #e8e8e6;
 
-    --shadow-sm: ;
-    --shadow-md: ;
-    --shadow-lg: ;
-    --shadow-xl: ;
-  }
-} */
+  --color-primary: #7bc91f;
+  --color-primary-hover: #8fd933;
+  --color-primary-foreground: #1a1b1e;
+
+  --color-border: rgba(200, 204, 214, 0.14);
+  --color-ring: rgba(200, 204, 214, 0.35);
+  --color-pattern: rgba(200, 204, 214, 0.08);
+
+  --shadow-sm: 0 1px 3px 0 rgba(0, 0, 0, 0.2);
+  --shadow-md:
+    0 3px 6px -1px rgba(0, 0, 0, 0.25), 0 2px 4px -2px rgba(0, 0, 0, 0.2),
+    0 0 0 1px rgba(255, 255, 255, 0.015);
+  --shadow-lg:
+    0 8px 16px -3px rgba(0, 0, 0, 0.3), 0 4px 6px -4px rgba(0, 0, 0, 0.25),
+    0 0 0 1px rgba(255, 255, 255, 0.02);
+  --shadow-xl:
+    0 16px 28px -5px rgba(0, 0, 0, 0.35), 0 8px 12px -6px rgba(0, 0, 0, 0.3),
+    0 0 0 1px rgba(255, 255, 255, 0.025);
+}
 
 @layer base {
   * {
@@ -108,7 +118,7 @@
   .display-text {
     font-size: clamp(4.5rem, 4rem + 6vw, 8rem);
     letter-spacing: -0.05em;
-    line-height: 0.85;
+    line-height: 0.9;
   }
 
   h1 {
@@ -144,6 +154,7 @@
   p {
     @apply font-body;
     font-size: clamp(0.625rem, 0.55rem + 1vw, 0.875rem); /* 14px -> 15px */
+    color: var(--color-foreground-secondary);
     line-height: 1.7;
     letter-spacing: 0.01em;
     max-width: 65ch;

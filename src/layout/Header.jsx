@@ -5,6 +5,8 @@ import clsx from 'clsx';
 
 import { EllipsisVerticalIcon } from '@heroicons/react/20/solid';
 
+import ThemeToggle from '@/features/theme/components/ThemeToggle';
+
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
@@ -22,9 +24,9 @@ export default function Header() {
         className={clsx(
           'fixed top-0 left-0 z-50',
           'h-10 md:h-12 lg:h-14',
-          'flex w-full items-center justify-end',
+          'gap-xs flex w-full items-center justify-end',
           'bg-background dark:bg-background border-border border-b',
-          'px-2 md:px-8 lg:px-10'
+          'md:gap-sm px-3 md:px-8 lg:px-10'
         )}
       >
         <nav className="hidden h-full items-stretch md:flex">
@@ -35,13 +37,15 @@ export default function Header() {
           </ul>
         </nav>
 
+        <ThemeToggle />
+
         <button
           onClick={toggleMenu}
           className="flex items-center rounded-lg md:hidden"
           aria-label="Toggle menu"
           aria-expanded={isMenuOpen}
         >
-          <EllipsisVerticalIcon className="h-5 w-5" />
+          <EllipsisVerticalIcon className="h-4 w-4" />
         </button>
       </header>
 
@@ -55,8 +59,8 @@ export default function Header() {
               exit={{ opacity: 0, y: -10 }}
               transition={{ duration: 0.2, ease: 'easeOut' }}
               className={clsx(
-                'fixed top-14 right-4 z-50',
-                'bg-surface shadow-md',
+                'fixed top-11 right-4 z-50',
+                'bg-background border shadow-md',
                 'overflow-hidden',
                 'md:hidden'
               )}
