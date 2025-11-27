@@ -21,6 +21,7 @@ export default function ThemeToggle({ className }) {
           'absolute h-4 w-4 transition-all duration-300 md:h-5 md:w-5',
           theme === 'dark' ? 'scale-100 rotate-0 opacity-100' : 'scale-0 rotate-90 opacity-0'
         )}
+        strokeWidth={1.3}
       />
 
       <MoonIcon
@@ -28,6 +29,7 @@ export default function ThemeToggle({ className }) {
           'absolute h-4 w-4 transition-all duration-300 md:h-5 md:w-5',
           theme === 'light' ? 'scale-100 rotate-0 opacity-100' : 'scale-0 -rotate-90 opacity-0'
         )}
+        strokeWidth={1.3}
       />
     </button>
   );

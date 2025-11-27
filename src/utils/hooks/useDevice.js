@@ -1,9 +1,8 @@
 import { useBreakpoint } from './useBreakpoint';
-import { useTheme } from './useTheme';
-
+import { useTheme } from '@/features/theme/utils/hooks/useTheme';
 export function useDevice() {
   const breakpoint = useBreakpoint();
-  const theme = useTheme();
+  const { theme, isDark, isLight } = useTheme();
 
   return {
     breakpoint,
@@ -11,7 +10,7 @@ export function useDevice() {
     isMobile: breakpoint === 'mobile' || breakpoint === 'sm',
     isTablet: breakpoint === 'md',
     isDesktop: breakpoint === 'lg' || breakpoint === 'xl' || breakpoint === '2xl',
-    isDark: theme === 'dark',
-    isLight: theme === 'light',
+    isDark,
+    isLight,
   };
 }

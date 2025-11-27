@@ -1,4 +1,4 @@
-import { THEME } from './keys';
+import { THEME } from './theme';
 
 export function getSystemPreference() {
   if (typeof window === 'undefined' || !window.matchMedia) return THEME.LIGHT;

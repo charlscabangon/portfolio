@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { motion, AnimatePresence } from 'framer-motion';
 import clsx from 'clsx';
 
-import { ICONIC_FONTS } from './helper/fonts';
+import { ICONIC_FONTS } from './utils/fonts';
 
 export default function FontCycler({
   text,

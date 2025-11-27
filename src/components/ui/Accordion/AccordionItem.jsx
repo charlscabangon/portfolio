@@ -1,14 +1,22 @@
-import { useState } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import PropTypes from 'prop-types';
 
 import TimelineNode from '../../display/TimelineNode/TimelineNode';
-import Markdown from '@/features/markdown/Markdown';
+import Markdown from '@/features/markdown/components/Markdown';
 
 import clsx from 'clsx';
-import { ChevronDownIcon } from '@heroicons/react/20/solid';
+import { ChevronDownIcon } from '@heroicons/react/24/outline';
 
 export default function AccordionItem({ item, isFirst, isLast }) {
   const [isOpen, setIsOpen] = useState(false);
+  const [height, setHeight] = useState(0);
+  const contentRef = useRef(null);
+
+  useEffect(() => {
+    if (contentRef.current) {
+      setHeight(contentRef.current.scrollHeight);
+    }
+  }, [isOpen, item.filename]);
 
   return (
     <div className="bg-background dark:bg-background flex">
@@ -42,21 +50,24 @@ export default function AccordionItem({ item, isFirst, isLast }) {
           </div>
           <ChevronDownIcon
             className={clsx(
-              'text-foreground-secondary dark:text-foreground-secondary h-6 w-6',
+              'text-foreground-secondary dark:text-foreground-secondary h-5 w-5',
               'transition-transform duration-300 ease-out',
               isOpen && 'rotate-180'
             )}
+            strokeWidth={1.5}
           />
         </button>
 
         <div
-          className={clsx(
-            'overflow-hidden transition-all duration-300 ease-out',
-            isOpen ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'
-          )}
+          style={{
+            maxHeight: isOpen ? `${height}px` : '0px',
+          }}
+          className="overflow-hidden transition-all duration-300 ease-out"
         >
-          <div className="px-md pt-sm pb-md text-foreground dark:text-foreground text-sm">
-            <Markdown dir={item.dir} file={item.filename} />
+          <div ref={contentRef} className="pt-xs pb-md px-2xl">
+            <div className="text-foreground text-sm">
+              <Markdown path={item.path} file={item.filename} />
+            </div>
           </div>
         </div>
       </div>

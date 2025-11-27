@@ -26,7 +26,7 @@ export function SecondaryBtn({ children, type = 'button', onClick }) {
       aria-label=""
       className={clsx(
         'btn py-1.5',
-        'ring-surface-hover dark:ring-surface-hover text-foreground dark:text-foreground ring ring-inset md:ring-2',
+        'ring-surface-hover dark:ring-surface-hover focus-visible:ring-primary text-foreground dark:text-foreground ring ring-inset md:ring-2',
         'transition-opacity hover:opacity-60 active:opacity-30 active:dark:opacity-90'
       )}
     >

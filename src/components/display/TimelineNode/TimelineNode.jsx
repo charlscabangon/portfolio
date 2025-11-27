@@ -16,7 +16,9 @@ export default function TimelineNode({ isActive = false, isFirst = false }) {
       <div className="bg-foreground-secondary dark:bg-foreground-secondary relative z-10 h-2 w-2 rounded-full" />
 
       {isActive && (
-        <div className="bg-foreground-secondary dark:bg-primary absolute h-2 w-2 animate-ping rounded-full" />
+        <div className="absolute flex items-center justify-center p-1">
+          <div className="bg-primary absolute h-2 w-2 animate-ping rounded-full md:h-3 md:w-3" />
+        </div>
       )}
     </div>
   );

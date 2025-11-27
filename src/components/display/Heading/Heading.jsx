@@ -1,12 +1,13 @@
+import { memo } from 'react';
 import PropTypes from 'prop-types';
 
 import Border from '../../ui/Border';
 import Label from '../../ui/Label';
-import { useDevice } from '@/utils/hooks/useDevice';
+import { useTheme } from '@/features/theme/utils/hooks/useTheme';
 
-export default function Heading({ children, level = 'h1', position, hasLabel = false }) {
+function Heading({ children, level = 'h1', position, hasLabel = true }) {
   const Tag = level;
-  const { theme, isLight, isDark } = useDevice();
+  const { isDark } = useTheme();
 
   const labelSize = {
     h1: 'text-7xl',
@@ -17,12 +18,14 @@ export default function Heading({ children, level = 'h1', position, hasLabel = f
     h6: 'text-2xl',
   };
 
-  const labelColor = isLight ? 'text-white' : 'text-black';
+  const labelColor = isDark ? 'text-white' : 'text-black';
 
   return (
     <div>
       {hasLabel && (
-        <Label>{`${labelSize[level]} ${labelColor} tracking-tighter text-balance`}</Label>
+        <Label position={position}>
+          {`${labelSize[level]} ${labelColor} tracking-tighter text-balance`}
+        </Label>
       )}
       <Border position={position}>
         <Tag>{children}</Tag>
@@ -37,3 +40,5 @@ Heading.propTypes = {
   position: PropTypes.oneOf(['left', 'center', 'right']),
   hasLabel: PropTypes.bool,
 };
+
+export default memo(Heading);

@@ -1,4 +1,4 @@
-import { THEME } from './keys';
+import { THEME } from './theme';
 
 export function getTheme() {
   try {
