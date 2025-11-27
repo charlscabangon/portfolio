@@ -3,7 +3,7 @@ import Border from '@/components/ui/Border';
 import Heading from '@/components/display/Heading/Heading';
 import Label from '@/components/ui/Label';
 
-import { experiences } from '@/data/experiences';
+import { experiences } from '@/data/sections/experiences/experiences';
 
 export default function Experiences() {
   return (

@@ -1,13 +1,11 @@
 import clsx from 'clsx';
-import Border from '@/components/ui/Border';
 
-import image from '@/assets/images/portfolio-pic.avif';
+import Border from '@/components/ui/Border';
+import Markdown from '@/features/markdown/components/Markdown';
+import Tooltip from '../ui/Tooltip';
+import { about, tools } from '@/data/sections/about/about';
 
 export default function AboutMe() {
-  const stack = ['JS', 'React', 'TW', 'Vite', 'Git', 'JS', 'React'];
-  const design = ['Ps', 'Ai', 'Ae', 'Xd', 'Figma', 'Canva'];
-
-  //todo: not hard code the infos, ui refinement, BORDERS, h w
   return (
     <section>
       <Border isFront={true}>
@@ -27,7 +25,7 @@ export default function AboutMe() {
                 'md:-ml-20'
               )}
             >
-              <img src={image} alt="" className="h-auto w-full object-cover" />
+              <img src={about.image} alt={about.title} className="h-auto w-full object-cover" />
             </div>
           </div>
 
@@ -42,46 +40,41 @@ export default function AboutMe() {
             <article
               className={clsx(
                 'border-border bg-background dark:bg-background container',
-                'md:pr-2xl container h-full w-full rounded-md border shadow-md'
+                'md:pr-2xl lg:pr-3xl container h-full w-full rounded-md border shadow-md'
               )}
             >
               <h6>what i do</h6>
-              <p>
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Hic qui aliquam cum
-                repellendus dolorem quam impedit neque, veniam, aperiam laudantium minus aut, ipsa
-                quod voluptatum. Velit repellat perspiciatis quasi sit!
-              </p>
+              <Markdown path={about.content.path} file={about.content.filename} />
+
               <div
                 className={clsx(
                   'border-border dark:border-border dark:ring-ring pattern-dots-dense container',
-                  'm-auto flex h-fit flex-col rounded-sm border shadow-sm',
+                  'gap-sm m-auto flex h-fit flex-col rounded-sm border shadow-sm',
                   'xl:mt-lg md:m-0 lg:w-[90%] 2xl:w-[85%]'
                 )}
               >
-                <div className="font-code text-foreground-secondary dark:text-foreground-secondary border-foreground-secondary border-l-2 pl-3 text-xs">
-                  tech stack
-                </div>
-                <div className="gap-sm flex flex-wrap">
-                  {stack.map((s, index) => {
-                    return (
-                      <div key={index} className="bg-foreground rounded-sm p-2 text-xs text-white">
-                        {s}
+                {tools.map((tool, index) => {
+                  return (
+                    <div key={index} className="gap-sm flex flex-col">
+                      <div className="font-code text-foreground-secondary dark:text-foreground-secondary border-foreground-secondary border-l-2 pl-3 text-xs">
+                        {tool.title}
                       </div>
-                    );
-                  })}
-                </div>
-                <div className="font-code text-foreground-secondary dark:text-foreground-secondary border-foreground-secondary border-l-2 pl-3 text-xs">
-                  design tools
-                </div>
-                <div className="gap-sm flex flex-wrap">
-                  {design.map((s, index) => {
-                    return (
-                      <div key={index} className="bg-foreground rounded-sm p-2 text-xs text-white">
-                        {s}
+                      <div className="gap-sm flex flex-wrap">
+                        {tool.tools.map((item) => {
+                          return (
+                            <Tooltip key={item.id} content={item.name}>
+                              <img
+                                src={item.icon}
+                                alt={item.name}
+                                className="h-9 w-9 cursor-pointer rounded-sm shadow-lg transition-transform duration-300 ease-in-out hover:scale-105"
+                              />
+                            </Tooltip>
+                          );
+                        })}
                       </div>
-                    );
-                  })}
-                </div>
+                    </div>
+                  );
+                })}
               </div>
             </article>
           </div>

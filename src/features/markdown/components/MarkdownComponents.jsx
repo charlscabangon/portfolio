@@ -9,7 +9,7 @@ export const markdownComponents = {
     <h4 className="text-foreground mt-3 mb-2 text-sm font-semibold">{children}</h4>
   ),
 
-  p: ({ children }) => <p className="text-foreground my-2">{children}</p>,
+  p: ({ children }) => <p className="text-foreground my-2 max-w-[80ch] font-light">{children}</p>,
   strong: ({ children }) => <strong className="text-foreground font-semibold">{children}</strong>,
   em: ({ children }) => <em className="italic">{children}</em>,
 
@@ -19,7 +19,7 @@ export const markdownComponents = {
   ol: ({ children }) => (
     <ol className="marker:text-foreground my-2 ml-4 list-decimal space-y-1">{children}</ol>
   ),
-  li: ({ children }) => <li className="text-foreground">{children}</li>,
+  li: ({ children }) => <li className="text-foreground font-light">{children}</li>,
 
   code: ({ children }) => (
     <code className="bg-foreground-disabled text-primary font-code rounded px-1 py-0.5 text-xs">

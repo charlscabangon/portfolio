@@ -1,12 +1,12 @@
 import Heading from '@/components/display/Heading/Heading';
 import Label from '@/components/ui/Label';
-import Card from '@/components/ui/Card';
+import CardContainer from '../display/Card/CardContainer';
 
 import { useDevice } from '@/utils/hooks/useDevice';
-import { projects } from '@/data/projects';
+import { projects } from '@/data/sections/projects/projects';
 
 export default function Projects() {
-  const { isMobile, isTablet, isDesktop } = useDevice();
+  const { isMobile, isTablet } = useDevice();
 
   const label = isMobile ? 'grid-cols-1' : isTablet ? 'grid-cols-2' : 'grid-cols-3';
 
@@ -20,7 +20,7 @@ export default function Projects() {
         <div className="mx-auto w-full max-w-7xl">
           <div className="gap-sm grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3">
             {projects.map((project, index) => (
-              <Card key={project.id} project={project} index={index} />
+              <CardContainer key={project.id} project={project} index={index} />
             ))}
           </div>
         </div>

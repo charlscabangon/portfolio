@@ -1,13 +1,14 @@
 import clsx from 'clsx';
 import Border from '@/components/ui/Border';
 import Heading from '@/components/display/Heading/Heading';
-
-import { useDevice } from '@/utils/hooks/useDevice';
 import Label from '../ui/Label';
-import FontCycler from '../display/FontCycler/FontCycler';
+
+import { getFeature } from "@/data/sections/designs/designs";
+import { useDevice } from '@/utils/hooks/useDevice';
+
 
 export default function Designs() {
-  const { isMobile, isTablet, isDesktop } = useDevice();
+  const { isTablet, isDesktop } = useDevice();
 
   const label = isTablet || isDesktop ? 'grid-cols-4 grid-rows-6' : 'grid-cols-3 grid-rows-6';
 
@@ -40,7 +41,7 @@ export default function Designs() {
                 )}
               >
                 <img
-                  src="src/assets/images/designs/feature-the-garcian.avif"
+                  src="/images/designs/feature-the-garcian.png"
                   alt=""
                   className="absolute inset-0 h-full w-full object-cover"
                 />
@@ -57,7 +58,7 @@ export default function Designs() {
                 )}
               >
                 <img
-                  src="src/assets/images/designs/feature-sd.avif"
+                  src="/images/designs/feature-sd.avif"
                   alt=""
                   className="absolute inset-0 h-full w-full object-cover"
                 />
@@ -74,7 +75,7 @@ export default function Designs() {
                 )}
               >
                 <img
-                  src="src/assets/images/designs/feature-trainy.avif"
+                  src="/images/designs/feature-trainy.avif"
                   alt=""
                   className="absolute inset-0 h-full w-full object-cover"
                 />
@@ -91,7 +92,7 @@ export default function Designs() {
                 )}
               >
                 <img
-                  src="src/assets/images/designs/feature-kultura-shirt.avif"
+                  src="/images/designs/feature-kultura-shirt.avif"
                   alt=""
                   className="absolute inset-0 h-full w-full object-cover"
                 />
@@ -108,7 +109,7 @@ export default function Designs() {
                 )}
               >
                 <img
-                  src="src/assets/images/designs/feature-jay-ay-logo.avif"
+                  src="/images/designs/feature-jay-ay-logo.avif"
                   alt=""
                   className="absolute inset-0 h-full w-full object-cover"
                 />
@@ -125,7 +126,7 @@ export default function Designs() {
                 )}
               >
                 <img
-                  src="src/assets/images/designs/feature-dept-shirt.avif"
+                  src="/images/designs/feature-dept-shirt.avif"
                   alt=""
                   className="absolute inset-0 h-full w-full object-cover"
                 />
@@ -142,7 +143,7 @@ export default function Designs() {
                 )}
               >
                 <img
-                  src="src/assets/images/designs/feature-ite-day.avif"
+                  src="/images/designs/feature-ite-day.avif"
                   alt=""
                   className="absolute inset-0 h-full w-full object-cover"
                 />
@@ -159,7 +160,7 @@ export default function Designs() {
                 )}
               >
                 <img
-                  src="src/assets/images/designs/feature-filler.avif"
+                  src="/images/designs/feature-filler.avif"
                   alt=""
                   className="absolute inset-0 h-full w-full object-cover"
                 />
@@ -175,9 +176,7 @@ export default function Designs() {
                   'md:col-span-2 md:col-start-2 md:row-span-2 md:row-start-3'
                 )}
               >
-                <div className="flex h-full w-full items-center justify-center">
-                  <FontCycler text="Graphic design" />
-                </div>
+                <div className="flex h-full w-full items-center justify-center"></div>
               </div>
             </div>
           </div>

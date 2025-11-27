@@ -4,10 +4,10 @@ import PropTypes from 'prop-types';
 import ReactMarkdown from 'react-markdown';
 
 import { markdownComponents } from './MarkdownComponents';
-import { getMarkdownContent } from './helper/mdLoader';
+import { getMarkdownContent } from '../utils/mdLoader';
 
-function Markdown({ dir, file }) {
-  const { content, error } = getMarkdownContent(dir, file);
+function Markdown({ path, file }) {
+  const { content, error } = getMarkdownContent(path, file);
 
   if (error) {
     return <p className="text-foreground-tertiary text-sm">{error}</p>;
