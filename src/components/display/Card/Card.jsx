@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 
-import Tooltip from '../../ui/Tooltip';
+import Tooltip from '@/components/ui/Tooltip';
 import { ArrowTopRightOnSquareIcon } from '@heroicons/react/24/outline';
 import { MEDIA_TYPES } from './utils/media';
 

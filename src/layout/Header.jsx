@@ -3,9 +3,8 @@ import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import clsx from 'clsx';
 
+import ThemeToggle from '@/features/Theme/components/ThemeToggle';
 import { EllipsisVerticalIcon } from '@heroicons/react/20/solid';
-
-import ThemeToggle from '@/features/theme/components/ThemeToggle';
 
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);

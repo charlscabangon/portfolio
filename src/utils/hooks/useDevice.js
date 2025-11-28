@@ -1,5 +1,5 @@
 import { useBreakpoint } from './useBreakpoint';
-import { useTheme } from '@/features/theme/utils/hooks/useTheme';
+import { useTheme } from '@/features/Theme/utils/hooks/useTheme';
 export function useDevice() {
   const breakpoint = useBreakpoint();
   const { theme, isDark, isLight } = useTheme();

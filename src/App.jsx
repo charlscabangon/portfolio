@@ -3,7 +3,7 @@ import AppLayout from './layout/AppLayout';
 import Header from './layout/Header';
 import HomePage from './pages/HomePage';
 
-import { ThemeProvider } from './features/theme/context/ThemeProvider';
+import { ThemeProvider } from './features/Theme/context/ThemeProvider';
 
 export default function App() {
   return (

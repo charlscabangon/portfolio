@@ -1,8 +1,8 @@
 import clsx from 'clsx';
 
 import Border from '@/components/ui/Border';
-import Markdown from '@/features/markdown/components/Markdown';
-import Tooltip from '../ui/Tooltip';
+import Tooltip from '@/components/ui/Tooltip';
+import Markdown from '@/features/Markdown/components/Markdown';
 import { about, tools } from '@/data/sections/about/about';
 
 export default function AboutMe() {

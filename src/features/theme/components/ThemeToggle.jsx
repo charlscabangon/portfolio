@@ -1,6 +1,7 @@
+import clsx from 'clsx';
+
 import { SunIcon, MoonIcon } from '@heroicons/react/24/outline';
 import { useTheme } from '../utils/hooks/useTheme';
-import clsx from 'clsx';
 
 export default function ThemeToggle({ className }) {
   const { theme, toggleTheme } = useTheme();
