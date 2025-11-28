@@ -1,6 +1,7 @@
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 
+import Contacts from './Contacts';
 import Footer from '@/layout/Footer';
 
 export default function AppLayout({ children }) {
@@ -26,6 +27,7 @@ export default function AppLayout({ children }) {
       <div className="pattern-stripes border-border hidden border-x sm:block"></div>
 
       <div className="hidden 2xl:block"></div>
+      <Contacts />
     </div>
   );
 }
