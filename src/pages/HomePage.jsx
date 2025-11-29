@@ -6,12 +6,16 @@ import Experiences from '@/components/sections/Experiences';
 
 export default function HomePage() {
   return (
-    <div className="space-y-3xl mt-4xl mb-5xl">
-      <Hero />
-      <AboutMe />
-      <Experiences />
-      <Projects />
-      <Designs />
+    <div className="space-y-3xl mb-5xl">
+      <div id="home" className="space-y-3xl mt-4xl">
+        <Hero />
+        <AboutMe />
+        <Experiences />
+      </div>
+      <div id="works" className="space-y-3xl">
+        <Projects />
+        <Designs />
+      </div>
     </div>
   );
 }

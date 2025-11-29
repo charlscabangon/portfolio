@@ -29,9 +29,9 @@
   --color-primary-hover: #6bb018;
   --color-primary-foreground: #ffffff;
 
-  --color-border: rgba(163, 163, 163, 0.2);
+  --color-border: rgba(163, 163, 163, 0.25);
   --color-ring: rgba(163, 163, 163, 0.3);
-  --color-pattern: rgba(163, 163, 163, 0.2);
+  --color-pattern: rgba(163, 163, 163, 0.25);
 
   --spacing-xs: 0.5rem; /* 8px */
   --spacing-sm: 1rem; /* 16px */
@@ -96,7 +96,7 @@
   }
 
   html {
-    @apply overflow-x-hidden antialiased;
+    @apply scroll-pt-14 overflow-x-hidden antialiased;
     font-size: clamp(1rem, 0.95rem + 0.25vw, 1.125rem); /* 16px -> 18px */
   }
 
@@ -244,18 +244,21 @@
   }
 
   .nav-desktop {
-    @apply font-ui hover:bg-background-secondary dark:hover:bg-background-secondary cursor-pointer px-5 text-sm font-medium transition-colors duration-200 lg:px-6;
+    @apply font-ui select-none text-foreground hover:bg-background-tertiary cursor-pointer px-5 text-sm font-medium no-underline transition-colors duration-200 lg:px-6;
     display: flex;
     align-items: center;
     justify-content: center;
     height: 100%;
-    min-width: 2.5rem; /* Ensures clickable area on mobile */
+    min-width: 2.5rem;
   }
 
   .nav-mobile {
-    @apply font-ui hover:bg-background-secondary dark:hover:bg-background-secondary block px-6 py-3 text-xs font-medium transition-colors;
+    @apply font-ui select-none text-foreground hover:bg-background-tertiary block px-6 py-3 text-xs font-medium no-underline transition-colors;
   }
 
+  .nav-active {
+    @apply bg-background-tertiary;
+  }
   .container {
     @apply p-md md:p-lg lg:p-xl space-y-sm;
   }

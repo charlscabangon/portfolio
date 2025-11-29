@@ -4,7 +4,7 @@ import { PrimaryBtn, SecondaryBtn } from '@/components/ui/Buttons';
 
 export default function Hero() {
   return (
-    <section className="mx-sm space-y-xl h-auto">
+    <section id="home" className="mx-sm space-y-xl h-auto">
       <div className="space-y-sm">
         <div>
           <Label>maybe a friendly greeting here?</Label>

@@ -1,13 +1,20 @@
 import { useState } from 'react';
 
+import { Link } from 'react-scroll';
 import { motion, AnimatePresence } from 'framer-motion';
 import clsx from 'clsx';
 
 import ThemeToggle from '@/features/Theme/components/ThemeToggle';
 import { EllipsisVerticalIcon } from '@heroicons/react/20/solid';
+import { NAV_LINKS } from '@/lib/navLinks';
 
 export default function Header() {
+  const [activeNav, setActiveNav] = useState('home');
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+  const handleSetActive = (to) => {
+    setActiveNav(to);
+  };
 
   const toggleMenu = () => {
     setIsMenuOpen((prev) => !prev);
@@ -30,9 +37,28 @@ export default function Header() {
       >
         <nav className="hidden h-full items-stretch md:flex">
           <ul className="flex h-full items-stretch">
-            <li className="nav-desktop border-l">home</li>
-            <li className="nav-desktop border-x">works</li>
-            <li className="nav-desktop border-r">about</li>
+            {NAV_LINKS.map((link, index) => (
+              <Link
+                key={link.id}
+                to={link.id}
+                spy={true}
+                smooth={true}
+                offset={-130}
+                duration={600}
+                delay={0}
+                onSetActive={handleSetActive}
+                onClick={() => setActiveNav(link.id)}
+                className={clsx(
+                  'nav-desktop cursor-pointer',
+                  activeNav === link.id && 'nav-active',
+                  index === 0 && 'border-l',
+                  index === NAV_LINKS.length - 1 && 'border-r',
+                  index > 0 && index < NAV_LINKS.length - 1 && 'border-x'
+                )}
+              >
+                {link.label}
+              </Link>
+            ))}
           </ul>
         </nav>
 
@@ -51,26 +77,44 @@ export default function Header() {
       {/* mobile */}
       <AnimatePresence>
         {isMenuOpen && (
-          <>
-            <motion.div
-              initial={{ opacity: 0, y: -10 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -10 }}
-              transition={{ duration: 0.2, ease: 'easeOut' }}
-              className={clsx(
-                'fixed top-11 right-4 z-50',
-                'bg-background border shadow-md',
-                'overflow-hidden',
-                'md:hidden'
-              )}
-            >
-              <ul className="py-1">
-                <li className="nav-mobile border-b">Home</li>
-                <li className="nav-mobile border-b">Works</li>
-                <li className="nav-mobile">About</li>
-              </ul>
-            </motion.div>
-          </>
+          <motion.div
+            initial={{ opacity: 0, y: -10 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -10 }}
+            transition={{ duration: 0.2, ease: 'easeOut' }}
+            className={clsx(
+              'fixed top-11 right-4 z-50',
+              'bg-background border shadow-md',
+              'overflow-hidden',
+              'md:hidden'
+            )}
+          >
+            <ul>
+              {NAV_LINKS.map((link, index) => (
+                <Link
+                  key={link.id}
+                  to={link.id}
+                  spy={true}
+                  smooth={true}
+                  offset={-130}
+                  duration={700}
+                  delay={0}
+                  onSetActive={handleSetActive}
+                  onClick={() => {
+                    setActiveNav(link.id);
+                    closeMenu();
+                  }}
+                  className={clsx(
+                    'nav-mobile cursor-pointer',
+                    activeNav === link.id && 'nav-active',
+                    index < NAV_LINKS.length - 1 && 'border-b'
+                  )}
+                >
+                  {link.label}
+                </Link>
+              ))}
+            </ul>
+          </motion.div>
         )}
       </AnimatePresence>
     </>
