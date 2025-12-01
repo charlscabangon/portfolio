@@ -10,13 +10,4 @@ export const projects = [
     link: 'https://reaux.vercel.app/',
     github: 'https://github.com/CharlsCabangon/reaux',
   },
-  {
-    id: 'catch-em-once',
-    title: "Catch 'em once",
-    description: 'Memory game built with React and TanStack Query',
-    thumbnail: getAssetUrl(PATH.PROJECTS.THUMBNAIL, 'catch-em-once', EXT.IMAGE),
-    preview: getAssetUrl(PATH.PROJECTS.PREVIEW, 'catch-em-once', EXT.VIDEO),
-    link: 'https://charlscabangon.github.io/catch-em-once/',
-    github: 'https://github.com/CharlsCabangon/catch-em-once',
-  },
 ];

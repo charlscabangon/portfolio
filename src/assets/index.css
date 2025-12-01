@@ -48,9 +48,13 @@
   --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -4px rgba(0, 0, 0, 0.1);
   --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
 
-  --transition-fast: 150ms;
-  --transition-normal: 200ms;
-  --transition-slow: 300ms;
+  --breakpoint-xxs: 360px;
+  --breakpoint-xs: 475px;
+  --breakpoint-sm: 640px;
+  --breakpoint-md: 768px;
+  --breakpoint-lg: 1024px;
+  --breakpoint-xl: 1280px;
+  --breakpoint-2xl: 1536px;
 }
 
 /* dark mode */
@@ -167,17 +171,6 @@
     letter-spacing: 0;
   }
 
-  a {
-    @apply text-foreground;
-    text-decoration: underline;
-    text-underline-offset: 0.2em;
-    transition: color var(--transition-fast);
-  }
-
-  a:hover {
-    @apply text-foreground-disabled;
-  }
-
   strong,
   b {
     font-weight: 600;
@@ -244,7 +237,7 @@
   }
 
   .nav-desktop {
-    @apply font-ui select-none text-foreground hover:bg-background-tertiary cursor-pointer px-5 text-sm font-medium no-underline transition-colors duration-200 lg:px-6;
+    @apply font-ui text-foreground hover:bg-background-tertiary cursor-pointer px-5 text-sm font-medium no-underline transition-colors duration-200 select-none lg:px-6;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -253,7 +246,7 @@
   }
 
   .nav-mobile {
-    @apply font-ui select-none text-foreground hover:bg-background-tertiary block px-6 py-3 text-xs font-medium no-underline transition-colors;
+    @apply font-ui text-foreground hover:bg-background-tertiary block px-6 py-3 text-xs font-medium no-underline transition-colors select-none;
   }
 
   .nav-active {

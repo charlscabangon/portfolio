@@ -4,10 +4,7 @@ const ROOT = 'assets';
 
 export const PATH = {
   ABOUT: 'about',
-  DESIGNS: {
-    BASE: 'designs',
-    FEATURE: 'designs/feature',
-  },
+  DESIGNS: 'designs',
   PROJECTS: {
     BASE: 'projects',
     PREVIEW: 'projects/preview',

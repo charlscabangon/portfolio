@@ -6,9 +6,9 @@ import { useDevice } from '@/utils/hooks/useDevice';
 import { projects } from '@/data/sections/projects/projects';
 
 export default function Projects() {
-  const { isMobile, isTablet } = useDevice();
+  const { isMobile } = useDevice();
 
-  const label = isMobile ? 'grid-cols-1' : isTablet ? 'grid-cols-2' : 'grid-cols-3';
+  const label = isMobile ? 'grid-cols-1' : 'grid-cols-2';
 
   return (
     <section id="works" className="space-y-sm">

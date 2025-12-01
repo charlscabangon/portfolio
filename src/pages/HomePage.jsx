@@ -1,8 +1,8 @@
-import Hero from '@/components/sections/Hero';
-import AboutMe from '@/components/sections/AboutMe';
-import Projects from '@/components/sections/Projects';
-import Designs from '@/components/sections/Designs';
-import Experiences from '@/components/sections/Experiences';
+import Hero from '@/components/sections/home/Hero';
+import AboutMe from '@/components/sections/home/AboutMe';
+import Projects from '@/components/sections/works/Projects';
+import Designs from '@/components/sections/works/Designs';
+import Experiences from '@/components/sections/home/Experiences';
 
 export default function HomePage() {
   return (

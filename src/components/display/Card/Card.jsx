@@ -81,7 +81,7 @@ export default function Card({ project, index, onMouseEnter, onMouseLeave }) {
           'after:bg-border after:z-10'
         )}
       >
-        <div className="border-border relative aspect-[720/480] overflow-hidden rounded-md border shadow-sm">
+        <div className="border-border relative aspect-[720/480] overflow-hidden rounded-lg border shadow-sm">
           <img
             src={project.thumbnail}
             alt={project.title}
@@ -105,12 +105,12 @@ export default function Card({ project, index, onMouseEnter, onMouseLeave }) {
           'before:hidden after:hidden',
           'max-md:before:block max-md:after:block',
 
-          'md:odd:before:block md:odd:after:block',
-          'before:absolute before:top-0 before:right-0 before:-left-[100vw]',
-          'before:h-px before:w-[200vw]',
+          'md:[.grid>div:nth-child(odd)_&]:before:block md:[.grid>div:nth-child(odd)_&]:after:block',
+          'before:absolute before:top-0 before:right-0',
+          'before:-left-[100vw] before:h-px before:w-[200vw]',
           'before:bg-border before:z-10',
-          'after:absolute after:right-0 after:bottom-0 after:-left-[100vw]',
-          'after:h-px after:w-[200vw]',
+          'after:absolute after:right-0 after:bottom-0',
+          'after:-left-[100vw] after:h-px after:w-[200vw]',
           'after:bg-border after:z-10'
         )}
       >
