@@ -6,7 +6,7 @@ import clsx from 'clsx';
 
 import ThemeToggle from '@/features/Theme/components/ThemeToggle';
 import { EllipsisVerticalIcon } from '@heroicons/react/20/solid';
-import { NAV_LINKS } from '@/lib/navLinks';
+import { NAV_LINKS } from '@/data/layout/navData';
 
 export default function Header() {
   const [activeNav, setActiveNav] = useState('home');
@@ -26,12 +26,16 @@ export default function Header() {
 
   return (
     <>
-      <header
+      <motion.header
+        initial={{ opacity: 0, y: -20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.7 }}
         className={clsx(
           'fixed top-0 left-0 z-50',
           'h-10 md:h-12 lg:h-14',
           'gap-xs flex w-full items-center justify-end',
-          'bg-background dark:bg-background border-border border-b',
+          'bg-background border-border border-b',
           'md:gap-sm px-3 md:px-8 lg:px-10'
         )}
       >
@@ -72,7 +76,7 @@ export default function Header() {
         >
           <EllipsisVerticalIcon className="h-4 w-4" />
         </button>
-      </header>
+      </motion.header>
 
       {/* mobile */}
       <AnimatePresence>

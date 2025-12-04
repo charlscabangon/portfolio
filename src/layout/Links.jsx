@@ -1,34 +1,28 @@
 import clsx from 'clsx';
 import { SocialIcon } from 'react-social-icons';
+import { ArrowDownTrayIcon } from '@heroicons/react/20/solid';
 
 import Tooltip from '@/components/ui/Tooltip';
-import { CONTACTS } from '@/data/sections/about/socials';
+import { getLink } from '@/data/sections/about/links';
 
-export default function Contacts() {
+export default function Links() {
   return (
     <div
       className={clsx(
         'fixed right-0 bottom-0 z-50',
-        'hidden flex-col lg:flex',
-        'border-border border bg-[#1a1b1e] p-0.5'
+        'hidden flex-col items-center justify-center lg:flex',
+        'border-border py-xs border bg-[#1a1b1e] px-0.5'
       )}
     >
-      <Tooltip content="Send me an email" position="left">
-        <SocialIcon
-          url={CONTACTS.EMAIL}
-          network="email"
-          bgColor="transparent"
-          fgColor=""
-          style={{ width: 43, height: 43 }}
-          rel="noopener noreferrer"
-          target="_blank"
-          aria-label="Send me an email"
-        />
+      <Tooltip content="Download my résumé" position="left">
+        <button aria-label="Download my résumé">
+          <ArrowDownTrayIcon className="h-6 w-6 text-white" />
+        </button>
       </Tooltip>
 
       <Tooltip content="Connect with me" position="left">
         <SocialIcon
-          url={CONTACTS.LINKEDIN}
+          url={getLink('linkedin').href}
           network="linkedin"
           bgColor="transparent"
           fgColor=""
@@ -41,7 +35,7 @@ export default function Contacts() {
 
       <Tooltip content="Visit my Github" position="left">
         <SocialIcon
-          url={CONTACTS.GITHUB}
+          url={getLink('github').href}
           network="github"
           bgColor="transparent"
           fgColor=""

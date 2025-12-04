@@ -27,8 +27,8 @@ export default function Border({
         isFront ? 'before:z-10 after:z-10' : 'before:-z-10 after:-z-10',
         'relative flex',
         positions[position],
-        'before:bg-border dark:before:bg-border before:absolute before:top-0 before:-left-[100vw] before:h-px before:w-[200vw]',
-        'after:bg-border dark:after:bg-border after:absolute after:bottom-0 after:-left-[100vw] after:h-px after:w-[200vw]',
+        'before:bg-border before:absolute before:top-0 before:-left-[100vw] before:h-px before:w-[200vw]',
+        'after:bg-border after:absolute after:bottom-0 after:-left-[100vw] after:h-px after:w-[200vw]',
         className
       )}
     >

@@ -1,4 +1,4 @@
-import { THEME } from './theme';
+import { THEME } from './constants';
 
 export function getSystemPreference() {
   if (typeof window === 'undefined' || !window.matchMedia) return THEME.LIGHT;

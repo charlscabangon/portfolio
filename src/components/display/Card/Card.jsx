@@ -115,7 +115,7 @@ export default function Card({ project, index, onMouseEnter, onMouseLeave }) {
         )}
       >
         <div>
-          <p className="text-foreground text-sm font-bold">{project.title}</p>
+          <p className="text-lead">{project.title}</p>
           <p className="text-foreground-secondary mt-1 text-xs">{project.description}</p>
         </div>
         <div>

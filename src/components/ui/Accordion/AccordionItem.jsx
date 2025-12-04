@@ -18,15 +18,11 @@ export default function AccordionItem({ item, isFirst, isLast }) {
   }, [isOpen, item.filename]);
 
   return (
-    <div className="bg-background dark:bg-background flex">
+    <div className="bg-background flex">
       <TimelineNode isActive={item.isActive} isFirst={isFirst} />
 
       <div
-        className={clsx(
-          'flex w-full flex-col',
-          'border-border dark:border-border border-l',
-          !isLast && 'border-b'
-        )}
+        className={clsx('flex w-full flex-col', 'border-border border-l', !isLast && 'border-b')}
       >
         <button
           onClick={() => setIsOpen(!isOpen)}
@@ -34,22 +30,18 @@ export default function AccordionItem({ item, isFirst, isLast }) {
             'flex w-full items-center justify-between',
             'py-sm px-md cursor-pointer',
             'text-left transition-colors duration-300',
-            'hover:bg-background-secondary hover:dark:bg-background-secondary'
+            'hover:bg-background-secondary'
           )}
           aria-expanded={isOpen}
         >
           <div className="flex flex-col items-start gap-1">
-            <h6 className="text-foreground dark:text-foreground mb-1">{item.title}</h6>
-            <span className="font-body text-foreground-secondary dark:text-foreground-secondary text-xs">
-              {item.company}
-            </span>
-            <span className="font-body text-foreground-secondary dark:text-foreground-secondary text-xs">
-              {item.date}
-            </span>
+            <h6 className="text-foreground mb-1">{item.title}</h6>
+            <span className="font-body text-foreground-secondary text-xs">{item.company}</span>
+            <span className="font-body text-foreground-secondary text-xs">{item.date}</span>
           </div>
           <ChevronDownIcon
             className={clsx(
-              'text-foreground-secondary dark:text-foreground-secondary h-5 w-5',
+              'text-foreground-secondary h-5 w-5',
               'transition-transform duration-300 ease-out',
               isOpen && 'rotate-180'
             )}

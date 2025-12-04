@@ -1,16 +1,19 @@
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 
-export function PrimaryBtn({ children, type = 'button', onClick }) {
+import { getAriaLabel } from '@/utils/getAriaLabel';
+
+export function PrimaryBtn({ children, type = 'button', onClick, disabled = false, className }) {
   return (
     <button
       type={type}
       onClick={onClick}
-      aria-label=""
+      disabled={disabled}
+      aria-label={getAriaLabel(children)}
       className={clsx(
-        'btn',
-        'bg-surface dark:bg-surface text-surface-foreground dark:text-surface-foreground',
-        'transition-opacity hover:opacity-80 active:opacity-60 active:dark:opacity-90'
+        'btn bg-surface text-surface-foreground',
+        'transition-opacity hover:opacity-80 active:opacity-60',
+        className
       )}
     >
       {children}
@@ -18,16 +21,18 @@ export function PrimaryBtn({ children, type = 'button', onClick }) {
   );
 }
 
-export function SecondaryBtn({ children, type = 'button', onClick }) {
+export function SecondaryBtn({ children, type = 'button', onClick, disabled = false, className }) {
   return (
     <button
       type={type}
       onClick={onClick}
-      aria-label=""
+      disabled={disabled}
+      aria-label={getAriaLabel(children)}
       className={clsx(
-        'btn py-1.5',
-        'ring-surface-hover dark:ring-surface-hover focus-visible:ring-primary text-foreground dark:text-foreground ring ring-inset md:ring-2',
-        'transition-opacity hover:opacity-60 active:opacity-30 active:dark:opacity-90'
+        'btn py-2.5',
+        'ring-surface-hover focus-visible:ring-primary text-foreground ring ring-inset md:ring-2',
+        'transition-opacity hover:opacity-70 active:opacity-40',
+        className
       )}
     >
       {children}
@@ -35,17 +40,19 @@ export function SecondaryBtn({ children, type = 'button', onClick }) {
   );
 }
 
-export function GhostBtn({ children, type = 'button', onClick }) {
+export function GhostBtn({ children, type = 'button', onClick, disabled = false, className }) {
   return (
     <button
       type={type}
       onClick={onClick}
-      aria-label=""
+      disabled={disabled}
+      aria-label={getAriaLabel(children)}
       className={clsx(
         'relative cursor-pointer',
         'transition-opacity hover:opacity-60 active:opacity-30',
         'text-xs sm:text-sm',
-        'after:bg-foreground dark:after:bg-foreground after:absolute after:bottom-0.5 after:-left-0 after:h-px after:w-full md:after:h-0.5'
+        'after:bg-foreground after:absolute after:bottom-0.5 after:-left-0 after:h-px after:w-full md:after:h-0.5',
+        className
       )}
     >
       {children}
@@ -57,16 +64,22 @@ PrimaryBtn.propTypes = {
   children: PropTypes.string.isRequired,
   type: PropTypes.oneOf(['button', 'submit', 'reset']),
   onClick: PropTypes.func,
+  disabled: PropTypes.bool,
+  className: PropTypes.string,
 };
 
 SecondaryBtn.propTypes = {
   children: PropTypes.string.isRequired,
   type: PropTypes.oneOf(['button', 'submit', 'reset']),
   onClick: PropTypes.func,
+  disabled: PropTypes.bool,
+  className: PropTypes.string,
 };
 
 GhostBtn.propTypes = {
   children: PropTypes.string.isRequired,
   type: PropTypes.oneOf(['button', 'submit', 'reset']),
   onClick: PropTypes.func,
+  disabled: PropTypes.bool,
+  className: PropTypes.string,
 };

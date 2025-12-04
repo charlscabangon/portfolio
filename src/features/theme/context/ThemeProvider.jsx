@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import { ThemeContext } from './ThemeContext';
 import { getTheme } from '../utils/getTheme';
 import { getSystemPreference } from '../utils/getSystemPreference';
-import { THEME } from '../utils/theme';
+import { THEME } from '../utils/constants';
 
 export function ThemeProvider({ children }) {
   const [theme, setTheme] = useState(() => {

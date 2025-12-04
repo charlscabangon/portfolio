@@ -1,4 +1,4 @@
-import { THEME } from './theme';
+import { THEME } from './constants';
 
 export function getTheme() {
   try {

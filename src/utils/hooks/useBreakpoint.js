@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 
-const breakpoints = {
+const BREAKPOINTS = {
   sm: 640,
   md: 768,
   lg: 1024,
@@ -28,10 +28,10 @@ export function useBreakpoint() {
 function getCurrentBreakpoint() {
   const width = window.innerWidth;
 
-  if (width >= breakpoints['2xl']) return '2xl';
-  if (width >= breakpoints.xl) return 'xl';
-  if (width >= breakpoints.lg) return 'lg';
-  if (width >= breakpoints.md) return 'md';
-  if (width >= breakpoints.sm) return 'sm';
+  if (width >= BREAKPOINTS['2xl']) return '2xl';
+  if (width >= BREAKPOINTS.xl) return 'xl';
+  if (width >= BREAKPOINTS.lg) return 'lg';
+  if (width >= BREAKPOINTS.md) return 'md';
+  if (width >= BREAKPOINTS.sm) return 'sm';
   return 'mobile';
 }

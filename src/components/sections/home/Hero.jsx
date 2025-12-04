@@ -1,6 +1,9 @@
+import { Link } from 'react-scroll';
+
 import Border from '@/components/ui/Border';
 import Label from '@/components/ui/Label';
 import { PrimaryBtn, SecondaryBtn } from '@/components/ui/Buttons';
+import { NAV_ID } from '@/data/layout/navData';
 
 export default function Hero() {
   return (
@@ -9,8 +12,8 @@ export default function Hero() {
         <div>
           <Label>maybe a friendly greeting here?</Label>
           <Border className="flex-col">
-            <h1 className="display-text block">hello!</h1>
-            <h1 className="display-text block">i am Charls</h1>
+            <h1 className="text-display block">hello!</h1>
+            <h1 className="text-display block">i am Charls</h1>
           </Border>
         </div>
 
@@ -25,17 +28,41 @@ export default function Hero() {
       </div>
 
       <div className="space-y-2 md:hidden">
-        <Border isFront={true} className="flex-col">
-          <PrimaryBtn>connect with me</PrimaryBtn>
+        <Border isFront={true} className="w-full flex-col">
+          <Link
+            to={NAV_ID.CONNECT}
+            spy={true}
+            smooth={true}
+            offset={-130}
+            duration={600}
+            delay={0}
+            className="w-full"
+          >
+            <PrimaryBtn className="w-full">connect with me</PrimaryBtn>
+          </Link>
         </Border>
-        <Border isFront={true} className="flex-col">
-          <SecondaryBtn>see my works</SecondaryBtn>
+        <Border isFront={true} className="w-full flex-col">
+          <Link
+            to={NAV_ID.WORKS}
+            spy={true}
+            smooth={true}
+            offset={-130}
+            duration={600}
+            delay={0}
+            className="w-full"
+          >
+            <SecondaryBtn className="w-full">see my works</SecondaryBtn>
+          </Link>
         </Border>
       </div>
 
       <Border isFront={true} className="hidden space-x-3 md:flex">
-        <PrimaryBtn>connect with me</PrimaryBtn>
-        <SecondaryBtn>see my works</SecondaryBtn>
+        <Link to={NAV_ID.CONNECT} spy={true} smooth={true} offset={-130} duration={600} delay={0}>
+          <PrimaryBtn>connect with me</PrimaryBtn>
+        </Link>
+        <Link to={NAV_ID.WORKS} spy={true} smooth={true} offset={-130} duration={600} delay={0}>
+          <SecondaryBtn>see my works</SecondaryBtn>
+        </Link>
       </Border>
 
       <div className="">
