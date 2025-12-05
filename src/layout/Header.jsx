@@ -1,12 +1,13 @@
 import { useState } from 'react';
 
+import clsx from 'clsx';
 import { Link } from 'react-scroll';
 import { motion, AnimatePresence } from 'framer-motion';
-import clsx from 'clsx';
 
 import ThemeToggle from '@/features/Theme/components/ThemeToggle';
-import { EllipsisVerticalIcon } from '@heroicons/react/20/solid';
+import Logo from '@/components/icons/Logo';
 import { NAV_LINKS } from '@/data/layout/navData';
+import { EllipsisVerticalIcon } from '@heroicons/react/20/solid';
 
 export default function Header() {
   const [activeNav, setActiveNav] = useState('home');
@@ -34,48 +35,54 @@ export default function Header() {
         className={clsx(
           'fixed top-0 left-0 z-50',
           'h-10 md:h-12 lg:h-14',
-          'gap-xs flex w-full items-center justify-end',
+          'flex w-full items-center justify-between',
           'bg-background border-border border-b',
-          'md:gap-sm px-3 md:px-8 lg:px-10'
+          'md:gap-sm px-3 lg:px-4 2xl:pl-6'
         )}
       >
-        <nav className="hidden h-full items-stretch md:flex">
-          <ul className="flex h-full items-stretch">
-            {NAV_LINKS.map((link, index) => (
-              <Link
-                key={link.id}
-                to={link.id}
-                spy={true}
-                smooth={true}
-                offset={-130}
-                duration={600}
-                delay={0}
-                onSetActive={handleSetActive}
-                onClick={() => setActiveNav(link.id)}
-                className={clsx(
-                  'nav-desktop cursor-pointer',
-                  activeNav === link.id && 'nav-active',
-                  index === 0 && 'border-l',
-                  index === NAV_LINKS.length - 1 && 'border-r',
-                  index > 0 && index < NAV_LINKS.length - 1 && 'border-x'
-                )}
-              >
-                {link.label}
-              </Link>
-            ))}
-          </ul>
-        </nav>
+        <Logo variant="outline" className="text-foreground-tertiary h-11 md:h-14" />
 
-        <ThemeToggle />
+        <div className="md:gap-sm flex h-full">
+          <nav className="hidden items-stretch md:flex">
+            <ul className="flex h-full items-stretch">
+              {NAV_LINKS.map((link, index) => (
+                <Link
+                  key={link.id}
+                  to={link.id}
+                  spy={true}
+                  smooth={true}
+                  offset={-130}
+                  duration={600}
+                  delay={0}
+                  onSetActive={handleSetActive}
+                  onClick={() => setActiveNav(link.id)}
+                  className={clsx(
+                    'nav-desktop cursor-pointer',
+                    activeNav === link.id && 'nav-active',
+                    index === 0 && 'border-l',
+                    index === NAV_LINKS.length - 1 && 'border-r',
+                    index > 0 && index < NAV_LINKS.length - 1 && 'border-x'
+                  )}
+                >
+                  {link.label}
+                </Link>
+              ))}
+            </ul>
+          </nav>
 
-        <button
-          onClick={toggleMenu}
-          className="flex items-center rounded-lg md:hidden"
-          aria-label="Toggle menu"
-          aria-expanded={isMenuOpen}
-        >
-          <EllipsisVerticalIcon className="h-4 w-4" />
-        </button>
+          <div className="my-auto">
+            <ThemeToggle />
+          </div>
+
+          <button
+            onClick={toggleMenu}
+            className="flex items-center rounded-lg md:hidden"
+            aria-label="Toggle menu"
+            aria-expanded={isMenuOpen}
+          >
+            <EllipsisVerticalIcon className="h-4 w-4" />
+          </button>
+        </div>
       </motion.header>
 
       {/* mobile */}
