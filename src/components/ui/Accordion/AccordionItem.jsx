@@ -55,7 +55,7 @@ export default function AccordionItem({ item, isFirst, isLast }) {
           }}
           className="overflow-hidden transition-all duration-300 ease-out"
         >
-          <div ref={contentRef} className="pt-xs pb-md px-2xl">
+          <div ref={contentRef} className="pt-xs pb-md px-md md:px-2xl">
             <div className="text-foreground text-sm">
               <Markdown path={item.path} file={item.filename} />
             </div>

@@ -48,10 +48,10 @@ export function GhostBtn({ children, type = 'button', onClick, disabled = false,
       disabled={disabled}
       aria-label={getAriaLabel(children)}
       className={clsx(
-        'relative cursor-pointer',
+        'relative inline-block cursor-pointer',
         'transition-opacity hover:opacity-60 active:opacity-30',
-        'text-xs sm:text-sm',
-        'after:bg-foreground after:absolute after:bottom-0.5 after:-left-0 after:h-px after:w-full md:after:h-0.5',
+        'text-foreground-tertiary text-xs sm:text-sm',
+        'after:bg-foreground-tertiary after:absolute after:bottom-0.5 after:-left-0 after:h-px after:w-full md:after:h-0.5',
         className
       )}
     >

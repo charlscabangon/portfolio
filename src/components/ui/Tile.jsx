@@ -75,8 +75,8 @@ export default function Tile({ children, src, title, caption, gridClass, onClick
                 >
                   <p
                     className={clsx(
-                      'border-l-2 border-white pl-3',
-                      'font-code text-left text-xs font-light text-white'
+                      'hidden border-l-2 border-white pl-3 md:block',
+                      'font-code text-left font-light text-white md:text-[0.50rem] lg:text-xs'
                     )}
                   >
                     {caption}

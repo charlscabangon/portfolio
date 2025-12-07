@@ -14,9 +14,9 @@ export default function Links() {
         'border-border py-xs border bg-[#1a1b1e] px-0.5'
       )}
     >
-      <Tooltip content="Download my résumé" position="left">
-        <button aria-label="Download my résumé">
-          <ArrowDownTrayIcon className="h-6 w-6 text-white" />
+      <Tooltip content="Download my resume" position="left">
+        <button aria-label="Download my resume">
+          <ArrowDownTrayIcon className="h-5 w-5 text-white" />
         </button>
       </Tooltip>
 

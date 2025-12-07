@@ -33,7 +33,7 @@ export const markdownComponents = {
   a: ({ href, children }) => (
     <a
       href={href}
-      className="text-primary underline-offset-2 hover:underline"
+      className="text-foreground-secondary hover:underline"
       target="_blank"
       rel="noopener noreferrer"
     >
