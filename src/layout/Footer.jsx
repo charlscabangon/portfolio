@@ -1,16 +1,27 @@
 import clsx from 'clsx';
+
 import Border from '@/components/ui/Border';
 import Logo from '@/components/icons/Logo';
+import Clipboard from '@/components/ui/Clipboard';
 import { footerData } from '@/data/layout/footerData';
-import { getLinks } from '@/data/sections/about/links';
+import { getLink, getLinks } from '@/data/sections/about/links';
 
 export default function Footer() {
   return (
     <footer className="w-full">
       <Border>
         <div className="flex w-full flex-col lg:flex-row lg:justify-between">
-          <div className="flex w-full items-center justify-center sm:border-b lg:border-0">
-            <Logo className="w-20 md:w-24 lg:w-30" />
+          <div className="flex w-full flex-col justify-between">
+            <div className="my-auto flex w-full items-center justify-center">
+              <Logo className="w-20 md:w-24 lg:w-30" />
+            </div>
+            <div className="p-sm border-t sm:border-b lg:border-b-0">
+              <p className="text-sm">contact me:</p>
+              <Clipboard
+                text={getLink('email').href}
+                className="text-sm font-light hover:underline"
+              />
+            </div>
           </div>
           <div className="gap-sm flex flex-col sm:flex-row sm:justify-between">
             {footerData.sections.map((section, index) => {
