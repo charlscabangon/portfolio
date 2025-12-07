@@ -2,6 +2,8 @@ import clsx from 'clsx';
 
 import Border from '@/components/ui/Border';
 import Tooltip from '@/components/ui/Tooltip';
+import DotGrid from '@/features/DotGrid/DotGrid';
+import ClickSpark from '@/features/ClickSpark/ClickSpark';
 import Markdown from '@/features/Markdown/components/Markdown';
 import { about, tools } from '@/data/sections/about/about';
 
@@ -25,7 +27,13 @@ export default function AboutMe() {
                 'md:-ml-20'
               )}
             >
-              <img src={about.image} alt={about.title} className="h-auto w-full object-cover" />
+              <ClickSpark>
+                <img
+                  src={about.image}
+                  alt={about.title}
+                  className="h-auto w-full cursor-pointer object-cover"
+                />
+              </ClickSpark>
             </div>
           </div>
 
@@ -44,19 +52,31 @@ export default function AboutMe() {
               )}
             >
               <h6>what i do</h6>
-              <Markdown path={about.content.path} file={about.content.filename} />
-
+              <div>
+                <Markdown path={about.content.path} file={about.content.filename} />
+              </div>
               <div
                 className={clsx(
-                  'border-border ring-ring pattern-dots-dense container',
+                  'border-border ring-ring relative container',
                   'gap-sm m-auto flex h-fit flex-col rounded-sm border shadow-sm',
                   'xl:mt-lg md:m-0 lg:w-[90%] 2xl:w-[85%]'
                 )}
               >
+                <div className="absolute inset-0 h-full w-full">
+                  <DotGrid
+                    dotSize={1.9}
+                    gap={10}
+                    proximity={120}
+                    shockRadius={250}
+                    shockStrength={5}
+                    resistance={750}
+                    returnDuration={1.5}
+                  />
+                </div>
                 {tools.map((tool, index) => {
                   return (
                     <div key={index} className="gap-sm flex flex-col">
-                      <div className="font-code text-foreground-secondary border-foreground-secondary border-l-2 pl-3 text-xs">
+                      <div className="font-code text-foreground border-foreground-secondary z-10 border-l-2 pl-3 text-xs">
                         {tool.title}
                       </div>
                       <div className="gap-sm flex flex-wrap">
