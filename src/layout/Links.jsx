@@ -1,13 +1,17 @@
+import { motion } from 'framer-motion';
 import clsx from 'clsx';
 
 import { Tooltip } from '@/components/ui';
 import { getLink } from '@/data/sections/about/links';
+import { slideUp, transition } from '@/styles/animation';
 import { SocialIcon } from 'react-social-icons';
 import { ArrowDownTrayIcon } from '@heroicons/react/20/solid';
 
 export default function Links() {
   return (
-    <div
+    <motion.div
+      {...slideUp}
+      transition={{ ...transition.slow }}
       className={clsx(
         'fixed right-0 bottom-0 z-50',
         'hidden flex-col items-center justify-center lg:flex',
@@ -45,6 +49,6 @@ export default function Links() {
           aria-label="Visit my Github"
         />
       </Tooltip>
-    </div>
+    </motion.div>
   );
 }

@@ -1,15 +1,24 @@
+import { motion } from 'framer-motion';
 import clsx from 'clsx';
 
 import { Border, Tooltip } from '@/components/ui';
 import { DotGrid, ClickSpark } from '@/components/display';
 import { Markdown } from '@/features/Markdown';
 import { about, tools } from '@/data/sections/about/about';
+import { useScrollReveal, useStagger } from '@/lib/hooks';
 
 export default function AboutMe() {
+  const animation = useScrollReveal({ threshold: 0.2 });
+  const stagger = useStagger({ y: 50 });
+
   return (
     <section>
       <Border isFront={true}>
-        <div className="flex w-full flex-col md:flex-row">
+        <motion.div
+          ref={animation.ref}
+          {...animation.props}
+          className="flex w-full flex-col md:flex-row"
+        >
           {/* image container */}
           <div
             className={clsx(
@@ -49,11 +58,16 @@ export default function AboutMe() {
                 'md:pr-2xl lg:pr-3xl container h-full w-full rounded-md border shadow-md'
               )}
             >
-              <h6>what i do</h6>
-              <div>
-                <Markdown path={about.content.path} file={about.content.filename} />
-              </div>
-              <div
+              <motion.div ref={animation.ref} {...animation.props} className="space-y-sm">
+                <h6>what i do</h6>
+                <div>
+                  <Markdown path={about.content.path} file={about.content.filename} />
+                </div>
+              </motion.div>
+
+              <motion.div
+                ref={stagger.ref}
+                {...stagger.container}
                 className={clsx(
                   'border-border ring-ring relative container',
                   'gap-sm m-auto flex h-fit flex-col rounded-sm border shadow-sm',
@@ -74,29 +88,34 @@ export default function AboutMe() {
                 {tools.map((tool, index) => {
                   return (
                     <div key={index} className="gap-sm flex flex-col">
-                      <div className="font-code text-foreground border-foreground-secondary z-10 border-l-2 pl-3 text-xs">
+                      <motion.div
+                        {...stagger.item}
+                        className="font-code text-foreground border-foreground-secondary z-10 border-l-2 pl-3 text-xs"
+                      >
                         {tool.title}
-                      </div>
+                      </motion.div>
                       <div className="gap-sm flex flex-wrap">
                         {tool.tools.map((item) => {
                           return (
-                            <Tooltip key={item.id} content={item.name}>
-                              <img
-                                src={item.icon}
-                                alt={item.name}
-                                className="h-9 w-9 cursor-pointer rounded-sm shadow-lg transition-transform duration-300 ease-in-out hover:scale-105"
-                              />
-                            </Tooltip>
+                            <motion.div key={item.id} {...stagger.item}>
+                              <Tooltip content={item.name}>
+                                <img
+                                  src={item.icon}
+                                  alt={item.name}
+                                  className="h-9 w-9 cursor-pointer rounded-sm shadow-lg transition-transform duration-300 ease-in-out hover:scale-105"
+                                />
+                              </Tooltip>
+                            </motion.div>
                           );
                         })}
                       </div>
                     </div>
                   );
                 })}
-              </div>
+              </motion.div>
             </article>
           </div>
-        </div>
+        </motion.div>
       </Border>
     </section>
   );

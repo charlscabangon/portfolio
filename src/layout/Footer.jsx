@@ -1,13 +1,21 @@
+import { motion } from 'framer-motion';
 import clsx from 'clsx';
 
 import Logo from '@/components/icons/Logo';
 import { Border, Clipboard } from '@/components/ui';
+import { useScrollReveal } from '@/lib/hooks';
+import { transition } from '@/styles/animation';
 import { footerData } from '@/data/layout/footerData';
 import { getLink, getLinks } from '@/data/sections/about/links';
 
 export default function Footer() {
+  const animation = useScrollReveal({
+    preset: 'slideUp',
+    transition: { ...transition.normal },
+  });
+
   return (
-    <footer className="w-full">
+    <motion.footer ref={animation.ref} {...animation.props} className="w-full">
       <Border>
         <div className="flex w-full flex-col lg:flex-row lg:justify-between">
           <div className="flex w-full flex-col justify-between">
@@ -62,6 +70,6 @@ export default function Footer() {
           © {new Date().getFullYear()} Charls Cabangon
         </p>
       </div>
-    </footer>
+    </motion.footer>
   );
 }

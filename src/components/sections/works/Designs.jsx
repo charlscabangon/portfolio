@@ -1,14 +1,19 @@
 import { useState } from 'react';
 
+import { motion } from 'framer-motion';
 import clsx from 'clsx';
 
 import { ImageLightbox } from '@/components/display';
 import { Heading, Border, Label, Tile } from '@/components/ui';
+import { useScrollReveal, useStagger } from '@/lib/hooks';
 import { getAllDesigns, getDesignsForLightbox } from '@/data/sections/designs/designs';
 
 export default function Designs() {
   const [lightboxOpen, setLightboxOpen] = useState(false);
   const [currentIndex, setCurrentIndex] = useState(0);
+
+  const animation = useScrollReveal({ threshold: 0.1 });
+  const stagger = useStagger({ threshold: 0, delay: 0.1, y: 40 });
 
   const designs = getAllDesigns();
   const lightboxSlides = getDesignsForLightbox();
@@ -19,7 +24,7 @@ export default function Designs() {
   };
 
   return (
-    <section className="space-y-sm">
+    <motion.section ref={animation.ref} {...animation.props} className="space-y-sm">
       <div className="ml-sm space-y-sm">
         <Heading level="h4">designs</Heading>
         <Border>
@@ -30,7 +35,9 @@ export default function Designs() {
         <Label margin={true}>{`grid grid-cols-3 grid-rows-6`}</Label>
         <Border isFront={true}>
           <div className="md:p-sm bg-background-secondary w-full p-1.5">
-            <div
+            <motion.div
+              ref={stagger.ref}
+              {...stagger.container}
               className={clsx(
                 'grid w-full gap-0.5',
                 'grid-cols-3 grid-rows-6',
@@ -39,17 +46,17 @@ export default function Designs() {
               )}
             >
               {designs.map((design, index) => (
-                <Tile
-                  key={design.id}
-                  src={design.image}
-                  title={design.title}
-                  caption={design.caption}
-                  gridClass={design.gridClass}
-                  onClick={() => openLightbox(index)}
-                  className={design.className}
-                />
+                <motion.div key={design.id} {...stagger.item} className={design.gridClass}>
+                  <Tile
+                    src={design.image}
+                    title={design.title}
+                    caption={design.caption}
+                    onClick={() => openLightbox(index)}
+                    className={design.className}
+                  />
+                </motion.div>
               ))}
-            </div>
+            </motion.div>
           </div>
         </Border>
       </div>
@@ -60,6 +67,6 @@ export default function Designs() {
         slides={lightboxSlides}
         index={currentIndex}
       />
-    </section>
+    </motion.section>
   );
 }

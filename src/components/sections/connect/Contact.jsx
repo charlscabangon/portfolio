@@ -1,9 +1,14 @@
+import { motion } from 'framer-motion';
+
 import { ContactForm } from '@/features/Contact';
 import { Border, Heading } from '@/components/ui';
+import { useScrollReveal } from '@/lib/hooks';
 
 export default function Contact() {
+  const animation = useScrollReveal();
+
   return (
-    <section className="space-y-sm">
+    <motion.section ref={animation.ref} {...animation.props} className="space-y-sm">
       <div className="space-y-sm ml-sm">
         <Heading level="h4">you made it here!</Heading>
         <Border>
@@ -18,6 +23,6 @@ export default function Contact() {
       >
         <ContactForm />
       </Border>
-    </section>
+    </motion.section>
   );
 }

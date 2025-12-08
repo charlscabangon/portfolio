@@ -1,11 +1,17 @@
 import { Link } from 'react-scroll';
+import { motion } from 'framer-motion';
 
 import { Border, Label, PrimaryBtn, SecondaryBtn } from '@/components/ui';
+import { fadeIn, transition } from '@/styles/animation';
 import { NAV_ID } from '@/data/layout/navData';
 
 export default function Hero() {
   return (
-    <section id="home" className="mx-sm space-y-xl h-auto">
+    <motion.section
+      {...fadeIn}
+      transition={{ ...transition.slow }}
+      className="mx-sm space-y-xl h-auto"
+    >
       <div className="space-y-sm">
         <div>
           <Label>maybe a friendly greeting here?</Label>
@@ -63,11 +69,11 @@ export default function Hero() {
         </Link>
       </Border>
 
-      <div className="">
+      <div>
         <Border position="right">
           <p>i love making the web look pretty and feel easy</p>
         </Border>
       </div>
-    </section>
+    </motion.section>
   );
 }

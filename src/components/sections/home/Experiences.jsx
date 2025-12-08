@@ -1,9 +1,13 @@
+import { motion } from 'framer-motion';
 import { Accordion, Border, Heading, Label } from '@/components/ui';
+import { useScrollReveal } from '@/lib/hooks';
 import { experiences } from '@/data/sections/experiences/experiences';
 
 export default function Experiences() {
+  const animation = useScrollReveal();
+
   return (
-    <section className="space-y-sm">
+    <motion.section ref={animation.ref} {...animation.props} className="space-y-sm">
       <div className="ml-sm">
         <Heading level="h4">my journey</Heading>
       </div>
@@ -13,6 +17,6 @@ export default function Experiences() {
           <Accordion items={experiences} />
         </Border>
       </div>
-    </section>
+    </motion.section>
   );
 }

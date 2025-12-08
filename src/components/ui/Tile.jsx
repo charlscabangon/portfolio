@@ -1,8 +1,10 @@
 import { useState } from 'react';
-import PropTypes from 'prop-types';
 
-import { motion, AnimatePresence } from 'framer-motion';
+import PropTypes from 'prop-types';
 import clsx from 'clsx';
+import { motion, AnimatePresence } from 'framer-motion';
+
+import { fadeIn, fadeInUp, transition } from '@/styles/animation';
 
 export default function Tile({ children, src, title, caption, gridClass, onClick, className }) {
   const [isHovered, setIsHovered] = useState(false);
@@ -11,6 +13,7 @@ export default function Tile({ children, src, title, caption, gridClass, onClick
     return (
       <div
         className={clsx(
+          'h-full w-full',
           'relative overflow-hidden',
           'rounded-lg border shadow-md',
           'border-border bg-background',
@@ -34,6 +37,7 @@ export default function Tile({ children, src, title, caption, gridClass, onClick
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
       className={clsx(
+        'h-full w-full',
         'group relative overflow-hidden',
         'rounded-lg border shadow-md',
         'border-border bg-background',
@@ -55,10 +59,8 @@ export default function Tile({ children, src, title, caption, gridClass, onClick
           {isHovered && (
             <>
               <motion.div
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                exit={{ opacity: 0 }}
-                transition={{ duration: 0.3, ease: 'easeOut' }}
+                {...fadeIn}
+                transition={{ ...transition.quick }}
                 className={clsx(
                   'absolute inset-0',
                   'bg-gradient-to-t from-black/75 via-black/45 via-40% to-black/30'
@@ -67,15 +69,13 @@ export default function Tile({ children, src, title, caption, gridClass, onClick
 
               {caption && (
                 <motion.div
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: 20 }}
-                  transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
+                  {...fadeInUp}
+                  transition={{ ...transition.smooth }}
                   className="p-md absolute inset-x-0 bottom-0 z-10"
                 >
                   <p
                     className={clsx(
-                      'hidden border-l-2 border-white pl-3 md:block',
+                      'hidden border-l-2 border-white pl-3 lg:block',
                       'font-code text-left font-light text-white md:text-[0.50rem] lg:text-xs'
                     )}
                   >

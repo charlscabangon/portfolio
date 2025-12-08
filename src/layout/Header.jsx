@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect, useRef } from 'react';
 
 import clsx from 'clsx';
 import { Link } from 'react-scroll';
@@ -6,12 +6,36 @@ import { motion, AnimatePresence } from 'framer-motion';
 
 import Logo from '@/components/icons/Logo';
 import { ThemeToggle } from '@/features/Theme';
+import { fadeInDown, slideDown, popIn, transition } from '@/styles/animation';
+import { useStagger } from '@/lib/hooks';
 import { NAV_LINKS } from '@/data/layout/navData';
 import { EllipsisVerticalIcon } from '@heroicons/react/20/solid';
 
 export default function Header() {
   const [activeNav, setActiveNav] = useState('home');
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+  const menuRef = useRef(null);
+  const toggleRef = useRef(null);
+
+  const stagger = useStagger({ threshold: 0.7 });
+
+  useEffect(() => {
+    if (!isMenuOpen) return;
+
+    function handleClickOutside(e) {
+      if (
+        menuRef.current &&
+        !menuRef.current.contains(e.target) &&
+        !toggleRef.current.contains(e.target)
+      ) {
+        closeMenu();
+      }
+    }
+
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => document.removeEventListener('mousedown', handleClickOutside);
+  }, [isMenuOpen]);
 
   const handleSetActive = (to) => {
     setActiveNav(to);
@@ -28,10 +52,9 @@ export default function Header() {
   return (
     <>
       <motion.header
-        initial={{ opacity: 0, y: -20 }}
-        whileInView={{ opacity: 1, y: 0 }}
+        {...slideDown}
         viewport={{ once: true }}
-        transition={{ duration: 0.7 }}
+        transition={{ ...transition.normal }}
         className={clsx(
           'fixed top-0 left-0 z-50',
           'h-10 md:h-12 lg:h-14',
@@ -40,11 +63,17 @@ export default function Header() {
           'md:gap-sm px-3 lg:px-4 2xl:pl-6'
         )}
       >
-        <Logo variant="outline" className="text-foreground-tertiary h-11 md:h-14" />
+        <motion.div {...popIn} transition={{ ...transition.slow }}>
+          <Logo variant="outline" className="text-foreground-tertiary h-11 md:h-14" />
+        </motion.div>
 
         <div className="md:gap-sm flex h-full">
           <nav className="hidden items-stretch md:flex">
-            <ul className="flex h-full items-stretch">
+            <motion.ul
+              ref={stagger.ref}
+              {...stagger.container}
+              className="flex h-full items-stretch"
+            >
               {NAV_LINKS.map((link, index) => (
                 <Link
                   key={link.id}
@@ -56,32 +85,39 @@ export default function Header() {
                   delay={0}
                   onSetActive={handleSetActive}
                   onClick={() => setActiveNav(link.id)}
-                  className={clsx(
-                    'nav-desktop cursor-pointer',
-                    activeNav === link.id && 'nav-active',
-                    index === 0 && 'border-l',
-                    index === NAV_LINKS.length - 1 && 'border-r',
-                    index > 0 && index < NAV_LINKS.length - 1 && 'border-x'
-                  )}
                 >
-                  {link.label}
+                  <motion.div
+                    {...stagger.item}
+                    className={clsx(
+                      'nav-desktop cursor-pointer',
+                      activeNav === link.id && 'nav-active',
+                      index === 0 && 'border-l',
+                      index === NAV_LINKS.length - 1 && 'border-r',
+                      index > 0 && index < NAV_LINKS.length - 1 && 'border-x'
+                    )}
+                  >
+                    {link.label}
+                  </motion.div>
                 </Link>
               ))}
-            </ul>
+            </motion.ul>
           </nav>
 
-          <div className="my-auto">
+          <motion.div {...popIn} transition={{ ...transition.slow }} className="my-auto">
             <ThemeToggle />
-          </div>
+          </motion.div>
 
-          <button
+          <motion.button
+            ref={toggleRef}
+            {...popIn}
+            transition={{ ...transition.slow }}
             onClick={toggleMenu}
             className="flex items-center rounded-lg md:hidden"
             aria-label="Toggle menu"
             aria-expanded={isMenuOpen}
           >
             <EllipsisVerticalIcon className="h-4 w-4" />
-          </button>
+          </motion.button>
         </div>
       </motion.header>
 
@@ -89,10 +125,9 @@ export default function Header() {
       <AnimatePresence>
         {isMenuOpen && (
           <motion.div
-            initial={{ opacity: 0, y: -10 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -10 }}
-            transition={{ duration: 0.2, ease: 'easeOut' }}
+            ref={menuRef}
+            {...fadeInDown}
+            transition={{ ...transition.spring }}
             className={clsx(
               'fixed top-11 right-4 z-50',
               'bg-background border shadow-md',

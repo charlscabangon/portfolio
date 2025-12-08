@@ -1,13 +1,15 @@
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
+import { motion } from 'framer-motion';
 
 import Links from './Links';
+import { slideInLeft, slideInRight, transition } from '@/styles/animation';
 
 export default function AppLayout({ children }) {
   return (
     <div
       className={clsx(
-        'grid min-h-screen',
+        'grid min-h-dvh overflow-hidden',
         'grid-cols-1',
         'sm:grid-cols-[40px_1fr_40px]',
         'lg:grid-cols-[60px_1fr_60px]',
@@ -16,11 +18,19 @@ export default function AppLayout({ children }) {
     >
       <div className="hidden 2xl:block"></div>
 
-      <div className="pattern-stripes border-border hidden border-x sm:block"></div>
+      <motion.div
+        {...slideInLeft}
+        transition={{ ...transition.slow }}
+        className="pattern-stripes border-border hidden h-full border-x sm:block"
+      ></motion.div>
 
       <main>{children}</main>
 
-      <div className="pattern-stripes border-border hidden border-x sm:block"></div>
+      <motion.div
+        {...slideInRight}
+        transition={{ ...transition.slow }}
+        className="pattern-stripes border-border hidden h-full border-x sm:block"
+      ></motion.div>
 
       <div className="hidden 2xl:block"></div>
       <Links />
