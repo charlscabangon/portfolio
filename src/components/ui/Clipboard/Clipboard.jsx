@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import PropTypes from 'prop-types';
 
-import Tooltip from './Tooltip';
+import Tooltip from '../Tooltip/Tooltip';
 
 export default function Clipboard({
   text,

@@ -92,14 +92,19 @@ export default function ContactForm() {
           </div>
 
           <div className="gap-xs flex justify-center sm:justify-end">
-            <SecondaryBtn onClick={resetForm} disabled={isSending} className="hidden sm:block">
+            <SecondaryBtn
+              onClick={resetForm}
+              disabled={isSending}
+              aria-busy={isSending}
+              className="hidden sm:block"
+            >
               clear all
             </SecondaryBtn>
             <PrimaryBtn
               type="submit"
               disabled={isSending}
-              className={clsx(isSending && 'cursor-not-allowed opacity-50')}
               aria-busy={isSending}
+              className={clsx(isSending && 'cursor-not-allowed opacity-50')}
             >
               {isSending ? (
                 <span className="flex items-center justify-center gap-2">

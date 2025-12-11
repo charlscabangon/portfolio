@@ -1,4 +1,4 @@
-import { delay, motion } from 'framer-motion';
+import { motion } from 'framer-motion';
 
 import AccordionItem from './AccordionItem';
 import { useStagger } from '@/lib/hooks';

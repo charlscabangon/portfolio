@@ -86,7 +86,7 @@ export default function Header() {
                   onSetActive={handleSetActive}
                   onClick={() => setActiveNav(link.id)}
                 >
-                  <motion.div
+                  <motion.button
                     {...stagger.item}
                     className={clsx(
                       'nav-desktop cursor-pointer',
@@ -97,7 +97,7 @@ export default function Header() {
                     )}
                   >
                     {link.label}
-                  </motion.div>
+                  </motion.button>
                 </Link>
               ))}
             </motion.ul>

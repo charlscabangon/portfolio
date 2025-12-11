@@ -3,7 +3,14 @@ import clsx from 'clsx';
 
 import { getAriaLabel } from '@/lib/utils';
 
-export function PrimaryBtn({ children, type = 'button', onClick, disabled = false, className }) {
+export function PrimaryBtn({
+  children,
+  type = 'button',
+  onClick,
+  disabled = false,
+  className,
+  ...props
+}) {
   return (
     <button
       type={type}
@@ -15,13 +22,21 @@ export function PrimaryBtn({ children, type = 'button', onClick, disabled = fals
         'transition-opacity hover:opacity-80 active:opacity-60',
         className
       )}
+      {...props}
     >
       {children}
     </button>
   );
 }
 
-export function SecondaryBtn({ children, type = 'button', onClick, disabled = false, className }) {
+export function SecondaryBtn({
+  children,
+  type = 'button',
+  onClick,
+  disabled = false,
+  className,
+  ...props
+}) {
   return (
     <button
       type={type}
@@ -30,17 +45,25 @@ export function SecondaryBtn({ children, type = 'button', onClick, disabled = fa
       aria-label={getAriaLabel(children)}
       className={clsx(
         'btn py-2.5',
-        'ring-surface-hover focus-visible:ring-primary text-foreground ring ring-inset md:ring-2',
+        'ring-surface-hover focus-visible:ring-foreground text-foreground ring ring-inset md:ring-2',
         'transition-opacity hover:opacity-70 active:opacity-40',
         className
       )}
+      {...props}
     >
       {children}
     </button>
   );
 }
 
-export function GhostBtn({ children, type = 'button', onClick, disabled = false, className }) {
+export function GhostBtn({
+  children,
+  type = 'button',
+  onClick,
+  disabled = false,
+  className,
+  ...props
+}) {
   return (
     <button
       type={type}
@@ -54,6 +77,7 @@ export function GhostBtn({ children, type = 'button', onClick, disabled = false,
         'after:bg-foreground-tertiary after:absolute after:bottom-0.5 after:-left-0 after:h-px after:w-full md:after:h-0.5',
         className
       )}
+      {...props}
     >
       {children}
     </button>
