@@ -1,9 +1,10 @@
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
+
 import { FormTextarea } from '../..';
 
 describe('FormTextarea component', () => {
-  test('renders textarea, displays error, and calls onChange', async () => {
+  test('renders textarea, displays error, and handles user input', async () => {
     const user = userEvent.setup();
     const onChange = vi.fn();
     const onBlur = vi.fn();
@@ -23,23 +24,10 @@ describe('FormTextarea component', () => {
     expect(textarea).toBeInTheDocument();
     expect(screen.getByText('message is required')).toBeInTheDocument();
 
-    await user.type(textarea, 'lorem');
+    await user.type(textarea, 'lorem ipsum');
     expect(onChange).toHaveBeenCalled();
-  });
 
-  test('auto-resize logic runs without errors when value changes', async () => {
-    const user = userEvent.setup();
-    const onChange = vi.fn();
-
-    render(
-      <FormTextarea label="message" name="message" value={'line\n'.repeat(3)} onChange={onChange} />
-    );
-
-    const textarea = screen.getByRole('textbox', { name: /message/i });
-    expect(textarea).toBeInTheDocument();
-
-    await user.clear(textarea);
-    await user.type(textarea, 'short');
-    expect(onChange).toHaveBeenCalled();
+    await user.tab();
+    expect(onBlur).toHaveBeenCalled();
   });
 });

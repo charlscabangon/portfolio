@@ -1,9 +1,10 @@
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
+
 import { FormInput } from '../..';
 
 describe('FormInput component', () => {
-  test('renders label, displays error, and calls onChange', async () => {
+  test('renders label, displays error, and handles user input', async () => {
     const user = userEvent.setup();
     const onChange = vi.fn();
     const onBlur = vi.fn();
@@ -23,7 +24,7 @@ describe('FormInput component', () => {
     expect(input).toBeInTheDocument();
     expect(screen.getByText('name is required')).toBeInTheDocument();
 
-    await user.type(input, 'lorem');
+    await user.type(input, 'charls');
     expect(onChange).toHaveBeenCalled();
 
     await user.tab();
