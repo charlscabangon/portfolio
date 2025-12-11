@@ -9,29 +9,101 @@ describe('debounce utility', () => {
     vi.useRealTimers();
   });
 
-  test('debounce delays execution until wait time', () => {
+  test('delays function execution until wait time elapses', () => {
     const fn = vi.fn();
     const debounced = debounce(fn, 500);
 
     debounced('a');
-    expect(fn).not.toBeCalled();
+    expect(fn).not.toHaveBeenCalled();
 
-    // advance time less than wait -> still not called
-    vi.advanceTimersByTime(200);
-    expect(fn).not.toBeCalled();
+    vi.advanceTimersByTime(499);
+    expect(fn).not.toHaveBeenCalled();
 
-    // advance remaining time -> called once
-    vi.advanceTimersByTime(300);
+    vi.advanceTimersByTime(1);
     expect(fn).toHaveBeenCalledTimes(1);
     expect(fn).toHaveBeenCalledWith('a');
+  });
 
-    // calling repeatedly resets timer
-    debounced(1);
+  test('resets timer on subsequent calls before wait time', () => {
+    const fn = vi.fn();
+    const debounced = debounce(fn, 500);
+
+    debounced('first');
     vi.advanceTimersByTime(300);
-    debounced(2);
+
+    debounced('second');
     vi.advanceTimersByTime(300);
-    // now 600 total since last call, should have called once for last argument
+
+    // only 300ms since last call, should not execute yet
+    expect(fn).not.toHaveBeenCalled();
+
     vi.advanceTimersByTime(200);
+
+    // now 500ms since last call, should execute with last argument
+    expect(fn).toHaveBeenCalledTimes(1);
+    expect(fn).toHaveBeenCalledWith('second');
+  });
+
+  test('calls function only once for rapid successive calls', () => {
+    const fn = vi.fn();
+    const debounced = debounce(fn, 300);
+
+    // rapid calls
+    debounced(1);
+    debounced(2);
+    debounced(3);
+    debounced(4);
+    debounced(5);
+
+    expect(fn).not.toHaveBeenCalled();
+
+    vi.advanceTimersByTime(300);
+
+    expect(fn).toHaveBeenCalledTimes(1);
+    expect(fn).toHaveBeenCalledWith(5);
+  });
+
+  test('preserves function arguments across multiple calls', () => {
+    const fn = vi.fn();
+    const debounced = debounce(fn, 200);
+
+    debounced('arg1', 'arg2', 'arg3');
+    vi.advanceTimersByTime(200);
+
+    expect(fn).toHaveBeenCalledWith('arg1', 'arg2', 'arg3');
+  });
+
+  test('allows multiple debounced executions after wait time', () => {
+    const fn = vi.fn();
+    const debounced = debounce(fn, 100);
+
+    debounced('first');
+    vi.advanceTimersByTime(100);
+    expect(fn).toHaveBeenCalledTimes(1);
+
+    debounced('second');
+    vi.advanceTimersByTime(100);
     expect(fn).toHaveBeenCalledTimes(2);
+
+    debounced('third');
+    vi.advanceTimersByTime(100);
+    expect(fn).toHaveBeenCalledTimes(3);
+  });
+
+  test('works with different wait times', () => {
+    const fn = vi.fn();
+    const debounced100 = debounce(fn, 100);
+    const debounced500 = debounce(fn, 500);
+
+    debounced100('fast');
+    debounced500('slow');
+
+    vi.advanceTimersByTime(100);
+    expect(fn).toHaveBeenCalledTimes(1);
+    expect(fn).toHaveBeenCalledWith('fast');
+
+    vi.advanceTimersByTime(400);
+    expect(fn).toHaveBeenCalledTimes(2);
+    expect(fn).toHaveBeenCalledWith('slow');
   });
 });

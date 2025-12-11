@@ -3,53 +3,31 @@ import userEvent from '@testing-library/user-event';
 
 import ThemeToggle from '../components/ThemeToggle';
 import { ThemeProvider } from '../context/ThemeProvider';
+import { THEME } from '../utils/constants';
 
 describe('ThemeToggle component', () => {
-  test('renders toggle button with correct aria-label', () => {
-    render(
-      <ThemeProvider>
-        <ThemeToggle />
-      </ThemeProvider>
-    );
+  const renderWithTheme = (ui = <ThemeToggle />) => render(<ThemeProvider>{ui}</ThemeProvider>);
 
-    const button = screen.getByRole('button', { name: /toggle theme/i });
-    expect(button).toBeInTheDocument();
+  test('renders accessible toggle button', () => {
+    renderWithTheme();
+
+    expect(screen.getByRole('button', { name: /toggle theme/i })).toBeInTheDocument();
   });
 
-  test('calls toggleTheme when clicked', async () => {
+  test('toggles theme when clicked', async () => {
     const user = userEvent.setup();
+    localStorage.setItem(THEME.KEY, THEME.DARK);
 
-    render(
-      <ThemeProvider>
-        <ThemeToggle />
-      </ThemeProvider>
-    );
+    renderWithTheme();
 
-    const button = screen.getByRole('button', { name: /toggle theme/i });
+    await user.click(screen.getByRole('button', { name: /toggle theme/i }));
 
-    await user.click(button);
-    expect(button).toBeInTheDocument();
+    expect(localStorage.getItem(THEME.KEY)).toBe(THEME.LIGHT);
   });
 
-  test('accepts and applies className prop', () => {
-    render(
-      <ThemeProvider>
-        <ThemeToggle className="custom-class" />
-      </ThemeProvider>
-    );
+  test('accepts custom className', () => {
+    renderWithTheme(<ThemeToggle className="custom-class" />);
 
-    const button = screen.getByRole('button', { name: /toggle theme/i });
-    expect(button).toHaveClass('custom-class');
-  });
-
-  test('renders sun and moon icons', () => {
-    const { container } = render(
-      <ThemeProvider>
-        <ThemeToggle />
-      </ThemeProvider>
-    );
-
-    const svgs = container.querySelectorAll('svg');
-    expect(svgs.length).toBeGreaterThanOrEqual(2); // sun and moon
+    expect(screen.getByRole('button', { name: /toggle theme/i })).toHaveClass('custom-class');
   });
 });

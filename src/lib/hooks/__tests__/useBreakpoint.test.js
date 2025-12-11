@@ -1,4 +1,5 @@
 import { renderHook, act } from '@testing-library/react';
+import { vi } from 'vitest';
 import { useBreakpoint } from '../useBreakpoint';
 
 describe('useBreakpoint hook', () => {
@@ -10,59 +11,38 @@ describe('useBreakpoint hook', () => {
     });
   });
 
-  test('returns initial breakpoint based on window width', () => {
-    window.innerWidth = 768;
+  test.each([
+    { width: 320, expected: 'mobile' },
+    { width: 639, expected: 'mobile' },
+    { width: 640, expected: 'sm' },
+    { width: 700, expected: 'sm' },
+    { width: 768, expected: 'md' },
+    { width: 900, expected: 'md' },
+    { width: 1024, expected: 'lg' },
+    { width: 1100, expected: 'lg' },
+    { width: 1280, expected: 'xl' },
+    { width: 1400, expected: 'xl' },
+    { width: 1536, expected: '2xl' },
+    { width: 1920, expected: '2xl' },
+  ])('returns $expected for width $width', ({ width, expected }) => {
+    window.innerWidth = width;
     const { result } = renderHook(() => useBreakpoint());
-
-    expect(result.current).toBe('md');
+    expect(result.current).toBe(expected);
   });
 
-  test('returns mobile for width < 640', () => {
-    window.innerWidth = 500;
+  test.each([
+    { width: 640, expected: 'sm', description: 'sm boundary (640px)' },
+    { width: 1024, expected: 'lg', description: 'lg boundary (1024px)' },
+    { width: 1536, expected: '2xl', description: '2xl boundary (1536px)' },
+  ])('returns consistent breakpoint at $description', ({ width, expected }) => {
+    window.innerWidth = width;
     const { result } = renderHook(() => useBreakpoint());
-
-    expect(result.current).toBe('mobile');
-  });
-
-  test('returns sm for width 640-767', () => {
-    window.innerWidth = 640;
-    const { result } = renderHook(() => useBreakpoint());
-
-    expect(result.current).toBe('sm');
-  });
-
-  test('returns md for width 768-1023', () => {
-    window.innerWidth = 768;
-    const { result } = renderHook(() => useBreakpoint());
-
-    expect(result.current).toBe('md');
-  });
-
-  test('returns lg for width 1024-1279', () => {
-    window.innerWidth = 1024;
-    const { result } = renderHook(() => useBreakpoint());
-
-    expect(result.current).toBe('lg');
-  });
-
-  test('returns xl for width 1280-1535', () => {
-    window.innerWidth = 1280;
-    const { result } = renderHook(() => useBreakpoint());
-
-    expect(result.current).toBe('xl');
-  });
-
-  test('returns 2xl for width >= 1536', () => {
-    window.innerWidth = 1536;
-    const { result } = renderHook(() => useBreakpoint());
-
-    expect(result.current).toBe('2xl');
+    expect(result.current).toBe(expected);
   });
 
   test('updates breakpoint on window resize', () => {
     window.innerWidth = 500;
     const { result } = renderHook(() => useBreakpoint());
-
     expect(result.current).toBe('mobile');
 
     act(() => {
@@ -76,7 +56,6 @@ describe('useBreakpoint hook', () => {
   test('handles multiple resize events', () => {
     window.innerWidth = 500;
     const { result } = renderHook(() => useBreakpoint());
-
     expect(result.current).toBe('mobile');
 
     act(() => {
@@ -99,28 +78,6 @@ describe('useBreakpoint hook', () => {
     unmount();
 
     expect(removeEventListenerSpy).toHaveBeenCalledWith('resize', expect.any(Function));
-
     removeEventListenerSpy.mockRestore();
-  });
-
-  test('returns consistent breakpoint for exact boundary values', () => {
-    const testCases = [
-      [639, 'mobile'],
-      [640, 'sm'],
-      [767, 'sm'],
-      [768, 'md'],
-      [1023, 'md'],
-      [1024, 'lg'],
-      [1279, 'lg'],
-      [1280, 'xl'],
-      [1535, 'xl'],
-      [1536, '2xl'],
-    ];
-
-    testCases.forEach(([width, expected]) => {
-      window.innerWidth = width;
-      const { result } = renderHook(() => useBreakpoint());
-      expect(result.current).toBe(expected);
-    });
   });
 });

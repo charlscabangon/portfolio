@@ -8,7 +8,6 @@ describe('getSystemPreference utility', () => {
     window.matchMedia = vi.fn((query) => ({
       matches: prefersDark && query === '(prefers-color-scheme: dark)',
       media: query,
-      onchange: null,
       addEventListener: vi.fn(),
       removeEventListener: vi.fn(),
       dispatchEvent: vi.fn(),
@@ -23,17 +22,17 @@ describe('getSystemPreference utility', () => {
     window.matchMedia = originalMatchMedia;
   });
 
-  test('returns LIGHT when matchMedia not available', () => {
+  test('returns light when matchMedia not available', () => {
     delete window.matchMedia;
     expect(getSystemPreference()).toBe(THEME.LIGHT);
   });
 
-  test('returns DARK when system prefers dark', () => {
+  test('returns dark when system prefers dark', () => {
     mockMatchMedia(true);
     expect(getSystemPreference()).toBe(THEME.DARK);
   });
 
-  test('returns LIGHT when system prefers light', () => {
+  test('returns light when system prefers light', () => {
     mockMatchMedia(false);
     expect(getSystemPreference()).toBe(THEME.LIGHT);
   });

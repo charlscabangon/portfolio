@@ -6,7 +6,7 @@ vi.mock('../utils/mdLoader', () => ({
   getMarkdownContent: vi.fn((path, file) => {
     if (path === 'experiences' && file === '01-degree.md') {
       return {
-        content: '# Degree\n\n Bachelor of Science in **Computer** Science',
+        content: '# Degree\n\nBachelor of Science in **Computer** Science',
         error: null,
       };
     }
@@ -24,29 +24,20 @@ vi.mock('../utils/mdLoader', () => ({
 }));
 
 describe('Markdown component', () => {
-  test('renders markdown content when path and file are valid', () => {
+  test('renders markdown content with formatting', () => {
     render(<Markdown path="experiences" file="01-degree.md" />);
 
     expect(screen.getByRole('heading', { level: 1, name: /degree/i })).toBeInTheDocument();
-  });
 
-  test('displays error message when path is invalid', () => {
-    render(<Markdown path="invalid" file="any.md" />);
-
-    expect(screen.getByText("This content section isn't available right now.")).toBeInTheDocument();
-  });
-
-  test('displays error message when file is not found', () => {
-    render(<Markdown path="experiences" file="nonexistent.md" />);
-
-    expect(screen.getByText('This content is currently unavailable.')).toBeInTheDocument();
-  });
-
-  test('renders markdown as HTML (converts ** to <strong>)', () => {
-    render(<Markdown path="experiences" file="01-degree.md" />);
-
-    const boldElement = screen.getByText(/computer/i);
-    expect(boldElement).toBeInTheDocument();
+    const boldElement = screen.getByText('Computer');
     expect(boldElement.tagName).toBe('STRONG');
+  });
+
+  test('displays error when content cannot be loaded', () => {
+    render(<Markdown path="invalid" file="lorem.md" />);
+    expect(screen.getByText("This content section isn't available right now.")).toBeInTheDocument();
+
+    render(<Markdown path="experiences" file="ipsum.md" />);
+    expect(screen.getByText('This content is currently unavailable.')).toBeInTheDocument();
   });
 });

@@ -19,6 +19,16 @@ if (!window.matchMedia) {
   });
 }
 
+global.IntersectionObserver = class IntersectionObserver {
+  constructor() {}
+  disconnect() {}
+  observe() {}
+  takeRecords() {
+    return [];
+  }
+  unobserve() {}
+};
+
 afterEach(() => {
   cleanup();
   vi.clearAllMocks();
