@@ -17,7 +17,6 @@ Clean code. Maintainable architecture. One source of truth. No spaghetti, no sho
 - [Framer Motion](https://www.framer.com/motion/)
 
 ##### Libraries
-- [react-animated-cursor](https://www.npmjs.com/package/react-animated-cursor)
 - [react-bits](https://reactbits.dev/)
 - [react-markdown](https://github.com/remarkjs/react-markdown)
 - [react-scroll](https://www.npmjs.com/package/react-scroll)
