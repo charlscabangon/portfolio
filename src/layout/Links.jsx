@@ -3,6 +3,7 @@ import clsx from 'clsx';
 
 import { Tooltip } from '@/components/ui';
 import { getLink } from '@/data/sections/about/links';
+import { downloadResume } from '@/lib/utils';
 import { slideUp, transition } from '@/styles/animation';
 import { SocialIcon } from 'react-social-icons';
 import { ArrowDownTrayIcon } from '@heroicons/react/20/solid';
@@ -18,32 +19,34 @@ export default function Links() {
         'border-border py-xs border bg-[#1a1b1e] px-0.5'
       )}
     >
-      <Tooltip content="Download my resume" position="left">
-        <button aria-label="Download my resume">
-          <ArrowDownTrayIcon className="h-5 w-5 text-white" />
+      <Tooltip content="download my resume" position="left">
+        <button onClick={downloadResume} aria-label="Download my resume">
+          <ArrowDownTrayIcon className="hover-fade h-5 w-9 text-white" />
         </button>
       </Tooltip>
 
-      <Tooltip content="Connect with me" position="left">
+      <Tooltip content="connect with me" position="left">
         <SocialIcon
           url={getLink('linkedin').href}
           network="linkedin"
           bgColor="transparent"
           fgColor=""
           style={{ width: 43, height: 43 }}
+          className="hover-fade"
           rel="noopener noreferrer"
           target="_blank"
           aria-label="Connect with me on LinkedIn"
         />
       </Tooltip>
 
-      <Tooltip content="Visit my Github" position="left">
+      <Tooltip content="visit my Github" position="left">
         <SocialIcon
           url={getLink('github').href}
           network="github"
           bgColor="transparent"
           fgColor=""
           style={{ width: 43, height: 43 }}
+          className="hover-fade"
           rel="noopener noreferrer"
           target="_blank"
           aria-label="Visit my Github"

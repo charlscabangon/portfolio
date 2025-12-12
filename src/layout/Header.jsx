@@ -8,7 +8,7 @@ import Logo from '@/components/icons/Logo';
 import { ThemeToggle } from '@/features/Theme';
 import { fadeInDown, slideDown, popIn, transition } from '@/styles/animation';
 import { useStagger } from '@/lib/hooks';
-import { NAV_LINKS } from '@/data/layout/navData';
+import { NAV_LINKS, NAV_ID } from '@/data/layout/navData';
 import { EllipsisVerticalIcon } from '@heroicons/react/20/solid';
 
 export default function Header() {
@@ -63,9 +63,19 @@ export default function Header() {
           'md:gap-sm px-3 lg:px-4 2xl:pl-6'
         )}
       >
-        <motion.div {...popIn} transition={{ ...transition.slow }}>
-          <Logo variant="outline" className="text-foreground-tertiary h-11 md:h-14" />
-        </motion.div>
+        <Link
+          to={NAV_ID.HOME}
+          spy={true}
+          smooth={true}
+          offset={-130}
+          duration={600}
+          delay={0}
+          className="flex items-center"
+        >
+          <motion.button {...popIn} transition={{ ...transition.slow }}>
+            <Logo variant="outline" className="text-foreground-tertiary h-11 md:h-14" />
+          </motion.button>
+        </Link>
 
         <div className="md:gap-sm flex h-full">
           <nav className="hidden items-stretch md:flex">

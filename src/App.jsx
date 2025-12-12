@@ -1,19 +1,14 @@
-import AppLayout from './layout/AppLayout';
-
-import Header from './layout/Header';
+import { AppLayout, Header } from '@/layout';
+import { ThemeProvider } from '@/features/Theme';
 import HomePage from './pages/HomePage';
-
-import { ThemeProvider } from './features/Theme/context/ThemeProvider';
 
 export default function App() {
   return (
-    <>
-      <ThemeProvider>
-        <Header />
-        <AppLayout>
-          <HomePage />
-        </AppLayout>
-      </ThemeProvider>
-    </>
+    <ThemeProvider>
+      <Header />
+      <AppLayout>
+        <HomePage />
+      </AppLayout>
+    </ThemeProvider>
   );
 }

@@ -7,6 +7,7 @@ import { useScrollReveal } from '@/lib/hooks';
 import { transition } from '@/styles/animation';
 import { footerData } from '@/data/layout/footerData';
 import { getLink, getLinks } from '@/data/sections/about/links';
+import { ArrowRightIcon } from '@heroicons/react/24/outline';
 
 export default function Footer() {
   const animation = useScrollReveal({
@@ -22,16 +23,28 @@ export default function Footer() {
             <div className="my-auto flex w-full items-center justify-center">
               <Logo className="w-20 md:w-24 lg:w-30" />
             </div>
-            <div className="p-sm border-t sm:border-b lg:border-b-0">
-              <p className="text-sm">contact me:</p>
+            <div
+              className={clsx(
+                'p-sm flex w-full flex-row items-center justify-center gap-1.5',
+                'border-t sm:border-y lg:border-b-0'
+              )}
+            >
               <Clipboard
                 text={getLink('email').href}
-                className="text-sm font-light hover:underline"
-              />
+                className="text-foreground-secondary group text-sm font-light hover:underline"
+              >
+                <ArrowRightIcon
+                  className={clsx(
+                    'w-4',
+                    'transition-transform duration-200 ease-out group-hover:-rotate-45'
+                  )}
+                  strokeWidth={1}
+                />
+              </Clipboard>
             </div>
           </div>
           <div className="gap-sm flex flex-col sm:flex-row sm:justify-between">
-            {footerData.sections.map((section, index) => {
+            {footerData.sections.map((section) => {
               const sectionLinks = getLinks(section.linkKeys);
               return (
                 <div
@@ -41,7 +54,7 @@ export default function Footer() {
                     'border-y last:border-b-0',
                     'sm:w-full sm:border-y-0 sm:first:border-r sm:last:border-l',
                     'md:py-xl md:pl-lg md:pr-4xl md:text-left',
-                    'md:border-x md:last:border-x-0 md:last:border-l'
+                    'md:border-x md:first:border-l-0 md:last:border-x-0 md:last:border-l lg:first:border-l'
                   )}
                 >
                   <p className="text-lead mb-lg">{section.title}</p>
