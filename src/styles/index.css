@@ -69,10 +69,10 @@
   --color-background-secondary: #25262d;
   --color-background-tertiary: #2a2d35;
 
-  --color-foreground: #e8e8e6; /* 14.2:1 - Softer than pure white */
-  --color-foreground-secondary: #c5c5c3; /* 9.8:1 - Warm gray */
-  --color-foreground-tertiary: #9d9d9a; /* 6.5:1 - Muted but readable */
-  --color-foreground-disabled: #6f6f6d; /* 4.2:1 - Subtle */
+  --color-foreground: #e8e8e6;
+  --color-foreground-secondary: #c5c5c3;
+  --color-foreground-tertiary: #9d9d9a;
+  --color-foreground-disabled: #6f6f6d;
 
   --color-surface: #2c2f38;
   --color-surface-hover: #353842;
@@ -199,6 +199,15 @@
     @apply cursor-pointer;
   }
 
+  img {
+    filter: brightness(100%) contrast(100%) saturate(100%);
+    transition: filter 300ms cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .dark img {
+    filter: brightness(85%) contrast(95%) saturate(98%);
+  }
+
   :focus-visible {
     @apply ring-foreground ring-1 ring-offset-1 ring-offset-transparent outline-none;
   }
@@ -259,7 +268,7 @@
   }
 
   .nav-desktop {
-    @apply font-ui text-foreground hover:bg-background-tertiary cursor-pointer px-5 text-sm font-normal no-underline transition-colors duration-200 select-none lg:px-6;
+    @apply font-ui text-foreground hover:bg-background-tertiary cursor-pointer px-5 text-sm font-normal no-underline transition-colors duration-200 ease-out select-none lg:px-6;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -268,7 +277,7 @@
   }
 
   .nav-mobile {
-    @apply font-ui text-foreground hover:bg-background-tertiary block px-6 py-3 text-xs font-normal no-underline transition-colors select-none;
+    @apply font-ui text-foreground hover:bg-background-tertiary block px-6 py-3 text-xs font-normal no-underline transition-colors duration-200 ease-out select-none;
   }
 
   .nav-active {
@@ -276,5 +285,13 @@
   }
   .container {
     @apply p-md md:p-lg lg:p-xl space-y-sm;
+  }
+
+  .hover-fade {
+    @apply transition-opacity duration-200 ease-out hover:opacity-60;
+  }
+
+  .hover-bg-muted {
+    @apply hover:bg-background-secondary transition-colors duration-200 ease-out;
   }
 }

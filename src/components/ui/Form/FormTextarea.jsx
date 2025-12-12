@@ -1,4 +1,4 @@
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useCallback } from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 
@@ -19,39 +19,30 @@ export default function FormTextarea({
   const textareaId = `textarea-${name}`;
   const errorId = `${name}-error`;
 
-  // Internal ref for auto-resize functionality
   const internalRef = useRef(null);
 
-  // Use the provided inputRef or fall back to internal ref
   const textareaRef = inputRef || internalRef;
 
-  // Auto-resize function
-  const autoResize = () => {
+  const autoResize = useCallback(() => {
     const textarea = textareaRef.current;
     if (!textarea) return;
 
-    // Reset height to auto to get the correct scrollHeight
     textarea.style.height = 'auto';
 
-    // Calculate line height (approximate)
     const lineHeight = parseInt(window.getComputedStyle(textarea).lineHeight) || 24;
     const minHeight = lineHeight * minRows;
     const maxHeight = lineHeight * maxRows;
-
-    // Set new height based on content
     const newHeight = Math.min(Math.max(textarea.scrollHeight, minHeight), maxHeight);
     textarea.style.height = `${newHeight}px`;
-  };
+  }, [textareaRef, maxRows, minRows]);
 
-  // Auto-resize on value change
   useEffect(() => {
     autoResize();
-  }, [value]);
+  }, [autoResize, value]);
 
-  // Auto-resize on mount
   useEffect(() => {
     autoResize();
-  }, []);
+  }, [autoResize]);
 
   const handleChange = (e) => {
     onChange(e);
@@ -79,7 +70,7 @@ export default function FormTextarea({
         className={clsx(
           'px-xxs md:px-sm py-xs w-full border-b',
           'text-foreground placeholder:text-foreground-tertiary text-xs font-light md:text-sm',
-          'transition-all duration-200',
+          'hover:border-foreground transition-all duration-200 ease-out',
           'scrollbar-hide resize-none',
           'focus:ring-border focus:ring-1',
           error ? 'border-error' : 'border-border',

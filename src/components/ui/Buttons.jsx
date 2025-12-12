@@ -19,7 +19,7 @@ export function PrimaryBtn({
       aria-label={getAriaLabel(children)}
       className={clsx(
         'btn bg-surface text-surface-foreground',
-        'transition-opacity hover:opacity-80 active:opacity-60',
+        'hover-fade active:opacity-60',
         className
       )}
       {...props}
@@ -46,7 +46,7 @@ export function SecondaryBtn({
       className={clsx(
         'btn py-2.5',
         'ring-surface-hover focus-visible:ring-foreground text-foreground ring ring-inset md:ring-2',
-        'transition-opacity hover:opacity-70 active:opacity-40',
+        'hover-fade active:opacity-40',
         className
       )}
       {...props}
@@ -72,7 +72,7 @@ export function GhostBtn({
       aria-label={getAriaLabel(children)}
       className={clsx(
         'relative inline-block cursor-pointer',
-        'transition-opacity hover:opacity-60 active:opacity-30',
+        'hover-fade active:opacity-30',
         'text-foreground-tertiary text-xs sm:text-sm',
         'after:bg-foreground-tertiary after:absolute after:bottom-0.5 after:-left-0 after:h-px after:w-full md:after:h-0.5',
         className

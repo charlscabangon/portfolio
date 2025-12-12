@@ -6,6 +6,8 @@ import { DotGrid, ClickSpark } from '@/components/display';
 import { Markdown } from '@/features/Markdown';
 import { about, tools } from '@/data/sections/about/about';
 import { useScrollReveal, useStagger } from '@/lib/hooks';
+import { downloadResume } from '@/lib/utils';
+import { ArrowDownTrayIcon } from '@heroicons/react/24/outline';
 
 export default function AboutMe() {
   const animation = useScrollReveal({ threshold: 0.2 });
@@ -59,7 +61,16 @@ export default function AboutMe() {
               )}
             >
               <motion.div ref={animation.ref} {...animation.props} className="space-y-sm">
-                <h6>what i do</h6>
+                <div className="flex items-center justify-between gap-1.5 md:gap-2">
+                  <h6>what i do</h6>
+                  <div className="lg:hidden">
+                    <Tooltip content="download my resume" position="top">
+                      <button onClick={downloadResume} className="mt-1.5">
+                        <ArrowDownTrayIcon className="text-foreground h-4 md:h-5" strokeWidth={1} />
+                      </button>
+                    </Tooltip>
+                  </div>
+                </div>
                 <div>
                   <Markdown path={about.content.path} file={about.content.filename} />
                 </div>
@@ -102,7 +113,7 @@ export default function AboutMe() {
                                 <img
                                   src={item.icon}
                                   alt={item.name}
-                                  className="h-9 w-9 cursor-pointer rounded-sm shadow-lg transition-transform duration-300 ease-in-out hover:scale-105"
+                                  className="h-9 w-9 cursor-pointer rounded-sm shadow-xl transition-transform duration-300 ease-in-out hover:scale-105"
                                 />
                               </Tooltip>
                             </motion.div>

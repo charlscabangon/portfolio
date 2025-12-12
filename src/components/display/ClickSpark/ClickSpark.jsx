@@ -132,12 +132,20 @@ const ClickSpark = ({
   };
 
   return (
-    <div className="relative h-full w-full" onClick={handleClick}>
+    <div className="relative h-full w-full" style={{ isolation: 'isolate' }}>
+      {children}
       <canvas
         ref={canvasRef}
-        className="pointer-events-none absolute top-0 left-0 block h-full w-full select-none"
+        onClick={handleClick}
+        className="absolute top-0 left-0 block h-full w-full select-none"
+        style={{
+          pointerEvents: 'auto',
+          mixBlendMode: 'screen',
+          filter: 'none',
+          cursor: 'pointer',
+          zIndex: 10,
+        }}
       />
-      {children}
     </div>
   );
 };

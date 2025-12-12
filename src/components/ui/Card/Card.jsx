@@ -5,7 +5,7 @@ import Tooltip from '@/components/ui/Tooltip/Tooltip';
 import { MEDIA_TYPES } from '@/lib/constants';
 import { ArrowTopRightOnSquareIcon } from '@heroicons/react/24/outline';
 
-export default function Card({ project, index, onMouseEnter, onMouseLeave }) {
+export default function Card({ project, onMouseEnter, onMouseLeave }) {
   const renderPreview = () => {
     if (!project.preview) return null;
 
@@ -50,8 +50,7 @@ export default function Card({ project, index, onMouseEnter, onMouseLeave }) {
     <div
       className={clsx(
         'group relative cursor-pointer',
-        'hover:bg-background-secondary border-border border-x',
-        'transition-colors duration-200',
+        'hover-bg-muted border-border border-x',
         'max-md:border-0 md:odd:border-l-transparent md:even:border-r-transparent'
       )}
       onMouseEnter={onMouseEnter}
@@ -126,8 +125,11 @@ export default function Card({ project, index, onMouseEnter, onMouseLeave }) {
             className="relative z-20"
             aria-label={`Open the GitHub repository for ${project.title}`}
           >
-            <Tooltip content="View repository">
-              <ArrowTopRightOnSquareIcon className="text-foreground h-4 w-4" strokeWidth={1} />
+            <Tooltip content="view repository">
+              <ArrowTopRightOnSquareIcon
+                className="hover-fade text-foreground h-4 w-4"
+                strokeWidth={1}
+              />
             </Tooltip>
           </a>
         </div>

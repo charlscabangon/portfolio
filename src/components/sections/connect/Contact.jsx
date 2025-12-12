@@ -12,7 +12,7 @@ export default function Contact() {
       <div className="space-y-sm ml-sm">
         <Heading level="h4">you made it here!</Heading>
         <Border>
-          <p>i’m ready to join your team, send an email!</p>
+          <p>i’d love to work with you, feel free to send me an email!</p>
         </Border>
       </div>
       <Border

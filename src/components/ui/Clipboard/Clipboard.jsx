@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import PropTypes from 'prop-types';
+import clsx from 'clsx';
 
 import Tooltip from '../Tooltip/Tooltip';
 
@@ -34,8 +35,9 @@ export default function Clipboard({
       position={tooltipPosition}
       delay={tooltipDelay}
     >
-      <button onClick={copyToClipboard} className={className}>
-        {children || text}
+      <button onClick={copyToClipboard} className={clsx('flex gap-1.5', className)}>
+        {children}
+        {text}
       </button>
     </Tooltip>
   );

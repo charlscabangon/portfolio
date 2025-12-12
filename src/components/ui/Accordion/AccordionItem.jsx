@@ -28,9 +28,7 @@ export default function AccordionItem({ item, isFirst, isLast }) {
           onClick={() => setIsOpen(!isOpen)}
           className={clsx(
             'flex w-full items-center justify-between',
-            'py-sm px-md cursor-pointer',
-            'text-left transition-colors duration-300',
-            'hover:bg-background-secondary'
+            'hover-bg-muted py-sm px-md cursor-pointer text-left'
           )}
           aria-expanded={isOpen}
         >
@@ -42,7 +40,7 @@ export default function AccordionItem({ item, isFirst, isLast }) {
           <ChevronDownIcon
             className={clsx(
               'text-foreground-secondary h-5 w-5',
-              'transition-transform duration-300 ease-out',
+              'transition-transform duration-200 ease-out',
               isOpen && 'rotate-180'
             )}
             strokeWidth={1.5}

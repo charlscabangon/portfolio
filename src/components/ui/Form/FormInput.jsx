@@ -38,7 +38,7 @@ export default function FormInput({
         className={clsx(
           'px-xxs md:px-sm py-xs w-full border-b',
           'text-foreground placeholder:text-foreground-tertiary text-xs font-light md:text-sm',
-          'transition-all duration-200',
+          'hover:border-foreground transition-all duration-200 ease-out',
           'focus:ring-border focus:ring-1',
           error ? 'border-error' : 'border-border',
           disabled && 'cursor-not-allowed opacity-50'
