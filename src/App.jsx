@@ -1,5 +1,5 @@
 import { AppLayout, Header } from '@/layout';
-import { ThemeProvider } from '@/features/Theme';
+import { ThemeProvider } from '@/features/tempTheme';
 import HomePage from './pages/HomePage';
 
 export default function App() {

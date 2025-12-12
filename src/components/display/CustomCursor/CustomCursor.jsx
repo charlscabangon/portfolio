@@ -1,5 +1,5 @@
 import AnimatedCursor from 'react-animated-cursor';
-import { useTheme } from '@/features/Theme';
+import { useTheme } from '@/features/tempTheme';
 
 export default function CustomCursor() {
   const { isDark } = useTheme();
