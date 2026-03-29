@@ -9,7 +9,7 @@ export default function Experiences() {
   return (
     <motion.section ref={animation.ref} {...animation.props} className="space-y-sm">
       <div className="ml-sm">
-        <Heading level="h4">my journey</Heading>
+        <Heading level="h4">experiences</Heading>
       </div>
       <div>
         <Label margin={true}>an accordion with an animate-ping would do it</Label>

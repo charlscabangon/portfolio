@@ -16,9 +16,21 @@ export const tools = [
     title: 'tech stack',
     tools: [
       {
-        id: 'javascript',
-        name: 'Javascript',
-        icon: getAssetUrl(PATH.TOOLS.TECH, 'javascript', EXT.ICON),
+        id: 'typescript',
+        name: 'Typescript',
+        icon: getAssetUrl(PATH.TOOLS.TECH, 'typescript', EXT.ICON),
+        link: '',
+      },
+      {
+        id: 'nuxt',
+        name: 'Nuxt',
+        icon: getAssetUrl(PATH.TOOLS.TECH, 'nuxt', EXT.ICON),
+        link: '',
+      },
+      {
+        id: 'vue',
+        name: 'Vue',
+        icon: getAssetUrl(PATH.TOOLS.TECH, 'vue', EXT.ICON),
         link: '',
       },
       {
@@ -72,6 +84,12 @@ export const tools = [
         id: 'figma',
         name: 'Figma',
         icon: getAssetUrl(PATH.TOOLS.DESIGN, 'figma', EXT.ICON),
+        link: '',
+      },
+      {
+        id: 'framer-motion',
+        name: 'Framer Motion',
+        icon: getAssetUrl(PATH.TOOLS.DESIGN, 'framer-motion', EXT.ICON),
         link: '',
       },
       {
